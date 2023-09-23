@@ -9,6 +9,9 @@ using Web_Store.Domain.Entites.Users;
 
 namespace Web_Store.Persistance.Contexts
 {
+    /// <summary>
+    /// کانتکست
+    /// </summary>
     public class DataBaseContext:DbContext, IDataBaseContext
     {
         public DataBaseContext(DbContextOptions options) :base (options)

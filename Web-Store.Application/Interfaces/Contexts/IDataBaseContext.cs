@@ -9,6 +9,9 @@ using Web_Store.Domain.Entites.Users;
 
 namespace Web_Store.Application.Interfaces.Contexts
 {
+    /// <summary>
+    /// اینترفیس کانتکست
+    /// </summary>
     public interface IDataBaseContext
     {
          DbSet<User> users { get; set; }
