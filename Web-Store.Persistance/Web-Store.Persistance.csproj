@@ -5,4 +5,13 @@
     <RootNamespace>Web_Store.Persistance</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Web-Store.Application\Web-Store.Application.csproj" />
+    <ProjectReference Include="..\Web-Store.Domain\Web-Store.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

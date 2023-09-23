@@ -1,8 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Web_Store.Application.Interfaces.Contexts;
+using Web_Store.Persistance.Contexts;
 
 namespace EndPoint.site
 {
@@ -18,6 +22,10 @@ namespace EndPoint.site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IDataBaseContext, DataBaseContext>();
+
+            string connectionString = "Data Source=DESKTOP-GSQBNGV ; Initial Catalog=Web-StoreDB;Integrated Security=true;";
+            services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(Options=>Options.UseSqlServer(connectionString));
             services.AddControllersWithViews();
         }
 
