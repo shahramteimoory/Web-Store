@@ -10,7 +10,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Web-Store.Common\Web-Store.Common.csproj" />
     <ProjectReference Include="..\Web-Store.Domain\Web-Store.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Users\Commands\" />
   </ItemGroup>
 
 </Project>
