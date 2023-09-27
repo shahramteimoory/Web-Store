@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using Web_Store.Application.Users.Commands.EditUser;
 using Web_Store.Application.Users.Commands.RegisterUser;
 using Web_Store.Application.Users.Commands.RemoveUser;
 using Web_Store.Application.Users.Commands.UserStatusChange;
@@ -17,17 +18,20 @@ namespace EndPoint.site.Areas.Admin.Controllers
         private readonly IRegisterUserService _registerUserService;
         private readonly IRemoveUserService _RemoveUserService;
         private readonly IUserStatusChangeService _userStatusChangeService;
+        private readonly IEditUserService _editUserService;
         public UsersController(IGetUserService getUserService
             , IGetRolesService getRolesService
             , IRegisterUserService registerUserService
             , IRemoveUserService RemoveUserService
-            ,IUserStatusChangeService userStatusChangeService)
+            ,IUserStatusChangeService userStatusChangeService
+            , IEditUserService editUserService)
         {
                 _getUserService = getUserService;
                 _getRolesService = getRolesService;
                 _registerUserService = registerUserService;
             _RemoveUserService = RemoveUserService;
             _userStatusChangeService= userStatusChangeService;
+            _editUserService = editUserService;
         }
 
         
@@ -76,6 +80,17 @@ namespace EndPoint.site.Areas.Admin.Controllers
         public IActionResult UserStatusChange(long UserId)
         {
             return Json(_userStatusChangeService.Execute(UserId));
+        }
+
+        [HttpPost]
+        public IActionResult Edit(long UserId, string FullName,string Email)
+        {
+            return Json(_editUserService.Execute(new RequestEdituserDto
+            {
+                UserId = UserId,
+                Fullname = FullName,
+                Email = Email
+            }));
         }
     }
 }
