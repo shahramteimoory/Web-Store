@@ -107,7 +107,7 @@ namespace Web_Store.Application.Users.Commands.RegisterUser
                         UserId = 0,
                     },
                     IsSuccess = false,
-                    Message = "ثبت نام انجام نشد"
+                    Message = "( ایمیل تکراریست ) ثبت نام انجام نشد"
                 };
                 
             }

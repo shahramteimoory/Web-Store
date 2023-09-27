@@ -4,19 +4,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Web_Store.Domain.Entites.Commons;
 
 namespace Web_Store.Domain.Entites.Users
 {
-    public class User
+    public class User:BaseEntites
     {
-        public long Id { get; set; }
-        [Required]
         public string FullName { get; set; }
-        [Required]
+     
         public string Email { get; set; }
-        [Required]
+      
         public string Password { get; set; }
-        [Required]
+      
         public ICollection<UserInRole> UserInRoles { get; set; }
     }
 }
