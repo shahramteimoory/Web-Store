@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using Web_Store.Application.Users.Commands.RegisterUser;
 using Web_Store.Application.Users.Commands.RemoveUser;
+using Web_Store.Application.Users.Commands.UserStatusChange;
 using Web_Store.Application.Users.Queries.GetRoles;
 using Web_Store.Application.Users.Queries.GetUsers;
 
@@ -15,15 +16,18 @@ namespace EndPoint.site.Areas.Admin.Controllers
         private readonly IGetRolesService _getRolesService;
         private readonly IRegisterUserService _registerUserService;
         private readonly IRemoveUserService _RemoveUserService;
+        private readonly IUserStatusChangeService _userStatusChangeService;
         public UsersController(IGetUserService getUserService
             , IGetRolesService getRolesService
             , IRegisterUserService registerUserService
-            , IRemoveUserService RemoveUserService)
+            , IRemoveUserService RemoveUserService
+            ,IUserStatusChangeService userStatusChangeService)
         {
                 _getUserService = getUserService;
                 _getRolesService = getRolesService;
                 _registerUserService = registerUserService;
             _RemoveUserService = RemoveUserService;
+            _userStatusChangeService= userStatusChangeService;
         }
 
         
@@ -66,6 +70,12 @@ namespace EndPoint.site.Areas.Admin.Controllers
         public IActionResult Delete(long UserId)
         {
             return Json(_RemoveUserService.Execute(UserId));
+        }
+
+        [HttpPost]
+        public IActionResult UserStatusChange(long UserId)
+        {
+            return Json(_userStatusChangeService.Execute(UserId));
         }
     }
 }

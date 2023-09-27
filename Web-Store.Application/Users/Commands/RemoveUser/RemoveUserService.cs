@@ -25,6 +25,7 @@ namespace Web_Store.Application.Users.Commands.RemoveUser
             }
             user.RemoveTime = DateTime.Now;
             user.IsRemoved = true;
+            user.IsActive = false;
             _context.SaveChanges();
             return new ResultDto()
             {

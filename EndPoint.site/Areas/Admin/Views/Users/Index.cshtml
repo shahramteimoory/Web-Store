@@ -40,7 +40,15 @@
                                                                 <td>
                                                                     <button class="btn btn-info">ویرایش</button>
                                                                 <button class="btn btn-danger" onclick="DeleteUser('@item.Id', '@item.FullName')">حذف</button>
-                                                                    <button   class="btn btn-warning">غیر فعال</button>
+                                                                @if (item.IsActive)
+                                                                {
+                                                                    <button class="btn btn-warning" onclick="UserStatusChange('@item.Id', '@item.FullName')">غیر فعال کردن</button>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <button class="btn btn-success" onclick="UserStatusChange('@item.Id', '@item.FullName')"> فعال کردن</button>
+                                                                }
+                                                                
                                                                 </td>
                                                             </tr>
                                                         }
@@ -73,7 +81,7 @@
         function DeleteUser(UserId, FullName) {
             swal.fire({
                 title: 'حذف کاربر',
-                text: "از حذف کاربر مطمئن " + FullName + " هستید؟",
+                text: "از حذف   " + FullName + " مطمئن هستید؟",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -90,6 +98,52 @@
                         dataType: 'json',
                         type: "POST",
                         url: "Delete",
+                        data: postData,
+                        success: function (data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function (isConfirm) {
+                                    location.reload();
+                                });
+                            } else {
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+                            }
+                        },
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                        }
+                    });
+                }
+            });
+        }
+
+        function UserStatusChange(UserId, FullName) {
+            swal.fire({
+                title: 'تغییر وضعیت کاربر',
+                text: "از تغییر وضعیت  " + FullName + " مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله تغییر وضعیت انجام شود',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+                    var postData = {
+                        'UserId': UserId,
+                    };
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "UserStatusChange",
                         data: postData,
                         success: function (data) {
                             if (data.isSuccess == true) {

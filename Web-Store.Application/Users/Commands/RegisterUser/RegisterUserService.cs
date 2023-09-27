@@ -71,6 +71,7 @@ namespace Web_Store.Application.Users.Commands.RegisterUser
                     Email = request.Email,
                     FullName = request.FullName,
                     InsertTime = DateTime.Now,
+                    IsActive=true
 
                 };
                 List<UserInRole> userInRoles = new List<UserInRole>();
