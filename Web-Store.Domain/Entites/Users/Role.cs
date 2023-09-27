@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
+using Web_Store.Domain.Entites.Commons;
 
 namespace Web_Store.Domain.Entites.Users
 {
-    public class Role
+    public class Role: BaseEntites
     {
-        public long Id { get; set; }
         public string Name { get; set; }
         public ICollection<UserInRole> UserInRoles { get; set; }
     }

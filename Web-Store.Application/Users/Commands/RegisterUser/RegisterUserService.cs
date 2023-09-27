@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Web_Store.Application.Interfaces.Contexts;
+using Web_Store.Common;
 using Web_Store.Common.Dto;
 using Web_Store.Domain.Entites.Users;
 
@@ -66,12 +68,31 @@ namespace Web_Store.Application.Users.Commands.RegisterUser
                         Message = "رمز عبور و تکرار آن برابر نیست"
                     };
                 }
+                string emailRegex = @"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$";
+
+                var match = Regex.Match(request.Email, emailRegex, RegexOptions.IgnoreCase);
+                if (!match.Success)
+                {
+                    return new ResultDto<ResultRegisterUserDto>()
+                    {
+                        Data = new ResultRegisterUserDto()
+                        {
+                            UserId = 0,
+                        },
+                        IsSuccess = false,
+                        Message = "ایمیل خودرا به درستی وارد نمایید"
+                    };
+                }
+
+                var passwordHasher =new PasswordHasher();
+                var hashPassword= passwordHasher.HashPassword(request.Password);
+
                 User user = new User()
                 {
                     Email = request.Email,
                     FullName = request.FullName,
-                    InsertTime = DateTime.Now,
-                    IsActive=true
+                    IsActive=true,
+                    Password=hashPassword,
 
                 };
                 List<UserInRole> userInRoles = new List<UserInRole>();
