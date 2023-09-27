@@ -29,6 +29,9 @@ namespace Web_Store.Persistance.Contexts
             modelBuilder.Entity<Role>().HasData(new Role { Id = 1 ,Name=nameof(UserRole.Admin) });
             modelBuilder.Entity<Role>().HasData(new Role { Id = 2, Name = nameof(UserRole.Operator) });
             modelBuilder.Entity<Role>().HasData(new Role { Id = 3, Name = nameof(UserRole.Customer) });
+
+            //نمیزاره ایمیل تکراری ثبت بشه
+            modelBuilder.Entity<User>().HasIndex(u=>u.Email).IsUnique();
         }
     }
 }

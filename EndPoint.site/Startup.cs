@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Web_Store.Application.Interfaces.Contexts;
+using Web_Store.Application.Users.Commands.RegisterUser;
 using Web_Store.Application.Users.Queries.GetRoles;
 using Web_Store.Application.Users.Queries.GetUsers;
 using Web_Store.Persistance.Contexts;
@@ -29,6 +30,7 @@ namespace EndPoint.site
             services.AddScoped<IDataBaseContext, DataBaseContext>();
             services.AddScoped<IGetUserService, GetUserService>();
             services.AddScoped<IGetRolesService, GetRolesService>();
+            services.AddScoped<IRegisterUserService,RegisterUserService>();
 
             string connectionString = "Data Source=DESKTOP-GSQBNGV ; Initial Catalog=Web-StoreDB;Integrated Security=true;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(Options=>Options.UseSqlServer(connectionString));
