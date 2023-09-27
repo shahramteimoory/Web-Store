@@ -32,6 +32,9 @@ namespace Web_Store.Persistance.Contexts
 
             //نمیزاره ایمیل تکراری ثبت بشه
             modelBuilder.Entity<User>().HasIndex(u=>u.Email).IsUnique();
+
+            //کوری فیلتر که تکراری ها رو لود نکنه پ
+            modelBuilder.Entity<User>().HasQueryFilter(u => !u.IsRemoved);
         }
     }
 }
