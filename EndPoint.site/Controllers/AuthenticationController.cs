@@ -1,7 +1,9 @@
 ﻿using EndPoint.site.Models.ViewModels.AuthenticationViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using Web_Store.Application.Users.Commands.RegisterUser;
@@ -17,8 +19,8 @@ namespace EndPoint.site.Controllers
         public AuthenticationController(IRegisterUserService registerUserService
             , IUserLoginService userLoginService)
         {
-            _registerUserService= registerUserService;
-            _userLoginService= userLoginService;
+            _registerUserService = registerUserService;
+            _userLoginService = userLoginService;
         }
 
         [HttpGet]
@@ -53,13 +55,13 @@ namespace EndPoint.site.Controllers
                 Email = request.Email,
                 FullName = request.FullName,
                 Password = request.Password,
-                RePasword=request.RePassword,
-                Roles= new List<RolesInRegisterUserServiceDto>()
+                RePasword = request.RePassword,
+                Roles = new List<RolesInRegisterUserServiceDto>()
                 {
                     new RolesInRegisterUserServiceDto{Id=3}
                 }
             });
-            if (signupresult.IsSuccess==true)
+            if (signupresult.IsSuccess == true)
             {
                 var claims = new List<Claim>()
                 {
@@ -68,9 +70,9 @@ namespace EndPoint.site.Controllers
                     new Claim(ClaimTypes.Name,request.FullName),
                     new Claim(ClaimTypes.Role,"Customer")
                 };
-                
-                var identity=new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
-                var principal=new ClaimsPrincipal(identity);
+
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
                 var properties = new AuthenticationProperties()
                 {
                     IsPersistent = true,
@@ -79,6 +81,43 @@ namespace EndPoint.site.Controllers
             }
 
             return Json(signupresult);
+        }
+        public IActionResult Signin(string ReturnUrl = "/")
+        {
+            ViewBag.url = ReturnUrl;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Signin(string Email, string Password, string url = "/")
+        {
+            var signupResult = _userLoginService.Execute(Email, Password);
+            if (signupResult.IsSuccess==true)
+            {
+                var claims = new List<Claim>()
+                {
+                    new Claim(ClaimTypes.NameIdentifier,signupResult.Data.UserId.ToString()),
+                    new Claim(ClaimTypes.Email,Email),
+                    new Claim(ClaimTypes.Name,signupResult.Data.Name),
+                    new Claim(ClaimTypes.Role,signupResult.Data.Roles)
+                };
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var principal = new ClaimsPrincipal(identity);
+                var properties = new AuthenticationProperties()
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = DateTime.Now.AddDays(100)
+                };
+                HttpContext.SignInAsync(principal, properties);
+            }
+            return Json(signupResult);
+        }
+        
+        public IActionResult SignOut()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }
