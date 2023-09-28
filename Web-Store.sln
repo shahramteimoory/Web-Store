@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{863F0A63-9B44-40C0-BFDA-B7F7000C890C}"
+	ProjectSection(SolutionItems) = preProject
+		identitychat.txt = identitychat.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{707A5331-9E45-42CD-BEAB-F3D9219BC4FE}"
 EndProject
@@ -17,17 +20,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Peresentation", "Peresentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{2E4E6E26-D7F5-4755-80EF-9CA27F99222D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web-Store.Domain", "Web-Store.Domain\Web-Store.Domain.csproj", "{3F062664-0563-4BE0-B4A3-2B1F2FD2E058}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web-Store.Domain", "Web-Store.Domain\Web-Store.Domain.csproj", "{3F062664-0563-4BE0-B4A3-2B1F2FD2E058}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web-Store.Application", "Web-Store.Application\Web-Store.Application.csproj", "{14EBCF06-E481-4FD0-A2A5-B23EF54CBE52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web-Store.Application", "Web-Store.Application\Web-Store.Application.csproj", "{14EBCF06-E481-4FD0-A2A5-B23EF54CBE52}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web-Store.Infrastructure", "Web-Store.Infrastructure\Web-Store.Infrastructure.csproj", "{A3F17F5E-2FAD-4F87-B7C3-BFDDC09C534A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web-Store.Infrastructure", "Web-Store.Infrastructure\Web-Store.Infrastructure.csproj", "{A3F17F5E-2FAD-4F87-B7C3-BFDDC09C534A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web-Store.Common", "Web-Store.Common\Web-Store.Common.csproj", "{0869D160-C1F1-4B4D-9BA0-4A8946C84D24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web-Store.Common", "Web-Store.Common\Web-Store.Common.csproj", "{0869D160-C1F1-4B4D-9BA0-4A8946C84D24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web-Store.Persistance", "Web-Store.Persistance\Web-Store.Persistance.csproj", "{E69E3B81-15D1-4FD7-822F-7AB9F5D82C43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web-Store.Persistance", "Web-Store.Persistance\Web-Store.Persistance.csproj", "{E69E3B81-15D1-4FD7-822F-7AB9F5D82C43}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndPoint.site", "EndPoint.site\EndPoint.site.csproj", "{F559753E-B524-48F6-8483-A7033B6931D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndPoint.site", "EndPoint.site\EndPoint.site.csproj", "{F559753E-B524-48F6-8483-A7033B6931D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

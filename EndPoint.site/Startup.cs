@@ -1,14 +1,18 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
+using System;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Users.Commands.EditUser;
 using Web_Store.Application.Users.Commands.RegisterUser;
 using Web_Store.Application.Users.Commands.RemoveUser;
+using Web_Store.Application.Users.Commands.UserLogin;
 using Web_Store.Application.Users.Commands.UserStatusChange;
 using Web_Store.Application.Users.Queries.GetRoles;
 using Web_Store.Application.Users.Queries.GetUsers;
@@ -28,8 +32,19 @@ namespace EndPoint.site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options =>
+            {
+                options.LoginPath = new PathString("/");
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5.0);
+            });
 
-            
+
+
             services.AddScoped<IDataBaseContext, DataBaseContext>();
             services.AddScoped<IGetUserService, GetUserService>();
             services.AddScoped<IGetRolesService, GetRolesService>();
@@ -37,6 +52,8 @@ namespace EndPoint.site
             services.AddScoped<IRemoveUserService, RemoveUserService>();
             services.AddScoped<IUserStatusChangeService, UserStatusChangeService>();
             services.AddScoped<IEditUserService, EditUserService>();
+            services.AddScoped<IUserLoginService, UserLoginService>();
+
 
             string connectionString = "Data Source=DESKTOP-GSQBNGV ; Initial Catalog=Web-StoreDB;Integrated Security=true;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(Options=>Options.UseSqlServer(connectionString));
@@ -57,6 +74,8 @@ namespace EndPoint.site
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
