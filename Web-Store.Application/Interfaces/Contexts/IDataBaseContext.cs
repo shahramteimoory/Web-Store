@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Web_Store.Domain.Entites.Products;
 using Web_Store.Domain.Entites.Users;
 
 namespace Web_Store.Application.Interfaces.Contexts
@@ -17,6 +18,7 @@ namespace Web_Store.Application.Interfaces.Contexts
          DbSet<User> users { get; set; }
          DbSet<Role> roles { get; set; }
          DbSet<UserInRole> UserInRoles { get; set; }
+        DbSet<Category> categories { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

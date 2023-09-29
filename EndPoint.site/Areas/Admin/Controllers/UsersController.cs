@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
-using Web_Store.Application.Users.Commands.EditUser;
-using Web_Store.Application.Users.Commands.RegisterUser;
-using Web_Store.Application.Users.Commands.RemoveUser;
-using Web_Store.Application.Users.Commands.UserStatusChange;
-using Web_Store.Application.Users.Queries.GetRoles;
-using Web_Store.Application.Users.Queries.GetUsers;
+using Web_Store.Application.Services.Users.Commands.EditUser;
+using Web_Store.Application.Services.Users.Commands.RegisterUser;
+using Web_Store.Application.Services.Users.Commands.RemoveUser;
+using Web_Store.Application.Services.Users.Commands.UserStatusChange;
+using Web_Store.Application.Services.Users.Queries.GetRoles;
+using Web_Store.Application.Services.Users.Queries.GetUsers;
+
 
 namespace EndPoint.site.Areas.Admin.Controllers
 {

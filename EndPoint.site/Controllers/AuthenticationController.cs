@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Security.Claims;
-using Web_Store.Application.Users.Commands.RegisterUser;
-using Web_Store.Application.Users.Commands.UserLogin;
+using Web_Store.Application.Services.Users.Commands.RegisterUser;
+using Web_Store.Application.Services.Users.Commands.UserLogin;
 using Web_Store.Common.Dto;
 
 namespace EndPoint.site.Controllers
