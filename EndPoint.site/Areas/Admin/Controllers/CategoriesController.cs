@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Web_Store.Application.Interfaces.FacadPatterns;
+using Web_Store.Application.Services.Products.Commands.EditCategory;
 
 namespace EndPoint.site.Areas.Admin.Controllers
 {
@@ -28,6 +29,15 @@ namespace EndPoint.site.Areas.Admin.Controllers
         {
             var result=_ProductFacad.AddNewCategoryService.Execute(parentId, Name);
             return Json(result);
+        }
+        [HttpPost]
+        public IActionResult EditCategory(long categoryId , string Name)
+        {
+            return Json(_ProductFacad.editCategory.Execute(new RequestEditCategoryDto
+            {
+                 CategoryId = categoryId,
+                 Name = Name
+            }));
         }
     }
 }
