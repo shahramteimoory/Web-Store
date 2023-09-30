@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Products.Commands.AddNewCategory;
+using Web_Store.Application.Services.Products.Queries.GetCategories;
 
 namespace Web_Store.Application.Services.Products.FacadPattern
 {
@@ -26,6 +27,14 @@ namespace Web_Store.Application.Services.Products.FacadPattern
             get
             {
                 return _AddNewCategoryService = _AddNewCategoryService ?? new AddNewCategoryService(_context);
+            }
+        }
+        private IGetCategoriesService _GetCategoriesService;
+        public IGetCategoriesService GetCategoriesService
+        {
+            get
+            {
+                return _GetCategoriesService= _GetCategoriesService ?? new GetCategoriesService(_context);
             }
         }
     }
