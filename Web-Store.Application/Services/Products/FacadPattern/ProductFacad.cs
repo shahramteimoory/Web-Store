@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,7 @@ using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Products.Commands.AddNewCategory;
+using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 using Web_Store.Application.Services.Products.Commands.EditCategory;
 using Web_Store.Application.Services.Products.Commands.RemoveCategory;
 using Web_Store.Application.Services.Products.Queries.GetCategories;
@@ -16,9 +18,11 @@ namespace Web_Store.Application.Services.Products.FacadPattern
     {
         //اول یه ایتجکت از دیتا بیس میکنیم
         private readonly IDataBaseContext _context;
-        public ProductFacad(IDataBaseContext context)
+        private readonly IHostingEnvironment _environment;
+        public ProductFacad(IDataBaseContext context , IHostingEnvironment hostingEnvironment)
         {
             _context=context;
+            _environment=hostingEnvironment;
         }
         //یه نمونه از سرویسی که میخوایم تو قساد بزاریمش  میسازیم 
         private AddNewCategoryService _AddNewCategoryService;
@@ -54,6 +58,14 @@ namespace Web_Store.Application.Services.Products.FacadPattern
             get
             {
                 return _RemoveCategoryService= _RemoveCategoryService ?? new RemoveCategoryService(_context); 
+            }
+        }
+        private AddNewProductService _AddNewProductService;
+        public AddNewProductService AddNewProductService
+        {
+            get
+            {
+                return _AddNewProductService = _AddNewProductService ?? new AddNewProductService(_context, _environment);
             }
         }
     }

@@ -12,6 +12,10 @@ namespace Web_Store.Persistance.Contexts
             modelBuilder.Entity<Role>().HasQueryFilter(r => !r.IsRemoved);
             modelBuilder.Entity<UserInRole>().HasQueryFilter(ur => !ur.IsRemoved);
             modelBuilder.Entity<Category>().HasQueryFilter(c => !c.IsRemoved);
+            modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<ProductFeatures>().HasQueryFilter(pf => !pf.IsRemoved);
+            modelBuilder.Entity<ProductImages>().HasQueryFilter(pi => !pi.IsRemoved);
+            
         }
     }
 }

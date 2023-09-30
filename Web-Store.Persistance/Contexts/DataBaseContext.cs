@@ -23,6 +23,9 @@ namespace Web_Store.Persistance.Contexts
         public DbSet<Role> roles { get; set; }
         public DbSet<UserInRole> UserInRoles { get; set; }
         public DbSet<Category> categories {  get; set; }
+        public DbSet<Product> products { get; set;}
+        public DbSet<ProductFeatures> ProductFeatures { get; set; }
+        public DbSet<ProductImages> productImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

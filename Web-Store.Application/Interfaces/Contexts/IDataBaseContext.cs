@@ -19,6 +19,9 @@ namespace Web_Store.Application.Interfaces.Contexts
          DbSet<Role> roles { get; set; }
          DbSet<UserInRole> UserInRoles { get; set; }
         DbSet<Category> categories { get; set; }
+        DbSet<Product> products { get; set; }
+        DbSet<ProductFeatures>ProductFeatures { get; set; }
+        DbSet<ProductImages>productImages { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
