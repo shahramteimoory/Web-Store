@@ -39,5 +39,10 @@ namespace EndPoint.site.Areas.Admin.Controllers
                  Name = Name
             }));
         }
+        [HttpPost]
+        public IActionResult Delete(long categoryId)
+        {
+            return Json(_ProductFacad.removeCategory.Execute(categoryId));
+        }
     }
 }

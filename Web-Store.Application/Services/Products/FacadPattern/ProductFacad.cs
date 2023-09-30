@@ -7,6 +7,7 @@ using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Products.Commands.AddNewCategory;
 using Web_Store.Application.Services.Products.Commands.EditCategory;
+using Web_Store.Application.Services.Products.Commands.RemoveCategory;
 using Web_Store.Application.Services.Products.Queries.GetCategories;
 
 namespace Web_Store.Application.Services.Products.FacadPattern
@@ -45,6 +46,14 @@ namespace Web_Store.Application.Services.Products.FacadPattern
             get
             {
                 return _editCategory= _editCategory ?? new EditCategory(_context);
+            }
+        }
+        private IRemoveCategoryService _RemoveCategoryService;
+        public IRemoveCategoryService removeCategory
+        {
+            get
+            {
+                return _RemoveCategoryService= _RemoveCategoryService ?? new RemoveCategoryService(_context); 
             }
         }
     }
