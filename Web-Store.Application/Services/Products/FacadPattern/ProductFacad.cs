@@ -10,6 +10,7 @@ using Web_Store.Application.Services.Products.Commands.AddNewCategory;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 using Web_Store.Application.Services.Products.Commands.EditCategory;
 using Web_Store.Application.Services.Products.Commands.RemoveCategory;
+using Web_Store.Application.Services.Products.Queries.GetAllCategories;
 using Web_Store.Application.Services.Products.Queries.GetCategories;
 
 namespace Web_Store.Application.Services.Products.FacadPattern
@@ -66,6 +67,14 @@ namespace Web_Store.Application.Services.Products.FacadPattern
             get
             {
                 return _AddNewProductService = _AddNewProductService ?? new AddNewProductService(_context, _environment);
+            }
+        }
+        private IGetAllCategoriesService _GetAllCategoriesService;
+        public IGetAllCategoriesService GetAllCategoriesService
+        {
+            get
+            {
+                return _GetAllCategoriesService= _GetAllCategoriesService ?? new GetAllCategoriesService(_context);
             }
         }
     }
