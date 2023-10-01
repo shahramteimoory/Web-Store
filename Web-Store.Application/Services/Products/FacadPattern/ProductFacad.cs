@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
+using Web_Store.Application.Interfaces.FluentValidation;
 using Web_Store.Application.Services.Products.Commands.AddNewCategory;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 using Web_Store.Application.Services.Products.Commands.EditCategory;
@@ -20,10 +21,10 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         //اول یه ایتجکت از دیتا بیس میکنیم
         private readonly IDataBaseContext _context;
         private readonly IHostingEnvironment _environment;
-        public ProductFacad(IDataBaseContext context , IHostingEnvironment hostingEnvironment)
+        public ProductFacad(IDataBaseContext context, IHostingEnvironment hostingEnvironment)
         {
-            _context=context;
-            _environment=hostingEnvironment;
+            _context = context;
+            _environment = hostingEnvironment;
         }
         //یه نمونه از سرویسی که میخوایم تو قساد بزاریمش  میسازیم 
         private AddNewCategoryService _AddNewCategoryService;
@@ -41,7 +42,7 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _GetCategoriesService= _GetCategoriesService ?? new GetCategoriesService(_context);
+                return _GetCategoriesService = _GetCategoriesService ?? new GetCategoriesService(_context);
             }
         }
 
@@ -50,7 +51,7 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _editCategory= _editCategory ?? new EditCategory(_context);
+                return _editCategory = _editCategory ?? new EditCategory(_context);
             }
         }
         private IRemoveCategoryService _RemoveCategoryService;
@@ -58,7 +59,7 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _RemoveCategoryService= _RemoveCategoryService ?? new RemoveCategoryService(_context); 
+                return _RemoveCategoryService = _RemoveCategoryService ?? new RemoveCategoryService(_context);
             }
         }
         private AddNewProductService _AddNewProductService;
@@ -74,7 +75,15 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _GetAllCategoriesService= _GetAllCategoriesService ?? new GetAllCategoriesService(_context);
+                return _GetAllCategoriesService = _GetAllCategoriesService ?? new GetAllCategoriesService(_context);
+            }
+        }
+        private Validation _Validation;
+        public Validation validationRules
+        {
+            get
+            {
+                return _Validation= _Validation ?? new Validation();
             }
         }
     }

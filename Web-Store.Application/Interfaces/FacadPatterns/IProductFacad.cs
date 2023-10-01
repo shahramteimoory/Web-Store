@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Web_Store.Application.Interfaces.FluentValidation;
 using Web_Store.Application.Services.Products.Commands.AddNewCategory;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 using Web_Store.Application.Services.Products.Commands.EditCategory;
@@ -22,5 +23,7 @@ namespace Web_Store.Application.Interfaces.FacadPatterns
 
         AddNewProductService AddNewProductService {  get; }
         IGetAllCategoriesService GetAllCategoriesService { get; }
+
+        Validation validationRules { get; }
     }
 }
