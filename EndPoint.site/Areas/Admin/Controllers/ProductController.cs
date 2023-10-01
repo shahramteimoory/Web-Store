@@ -1,13 +1,11 @@
-﻿using FluentValidation;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
 using Web_Store.Application.Interfaces.FacadPatterns;
-using Web_Store.Application.Interfaces.FluentValidation;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
-using Web_Store.Application.Services.Products.FacadPattern;
+using Web_Store.Application.Services.Products.FluentValidation;
 using Web_Store.Common.Dto;
 using Web_Store.Domain.Entites.Products;
 
@@ -21,9 +19,9 @@ namespace EndPoint.site.Areas.Admin.Controllers
         {
             _ProductFacad = ProductFacad;
         }
-        public IActionResult Index()
+        public IActionResult Index(int Page=1,int PageSize=20)
         {
-            return View();
+            return View(_ProductFacad.getProductForAdminService.Execute(Page, PageSize).Data);
         }
         [HttpGet]
         public IActionResult AddNewProduct()
@@ -62,10 +60,20 @@ namespace EndPoint.site.Areas.Admin.Controllers
             {
                 var errorMessages = string.Join(", ", validationResult.Errors.Select(e => e.ErrorMessage));
 
-                return Json(new ResultDto { IsSuccess=false,Message= errorMessages });
+                return Json(new ResultDto { IsSuccess = false, Message = errorMessages });
 
             }
         }
+        [HttpGet]
+        public IActionResult Detail(long Id)
+        {
+            return View(_ProductFacad.getProductDetailForAdminService.Execute(Id).Data);
+        }
+        [HttpPost]
+        public IActionResult Remove(long Id)
+        {
+            return Json(_ProductFacad.removeProductService.Execute(Id));
+        }
     }
-    
+
 }

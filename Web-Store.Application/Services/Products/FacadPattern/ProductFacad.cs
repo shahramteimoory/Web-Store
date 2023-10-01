@@ -6,13 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
-using Web_Store.Application.Interfaces.FluentValidation;
 using Web_Store.Application.Services.Products.Commands.AddNewCategory;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 using Web_Store.Application.Services.Products.Commands.EditCategory;
 using Web_Store.Application.Services.Products.Commands.RemoveCategory;
+using Web_Store.Application.Services.Products.Commands.RemoveProduct;
+using Web_Store.Application.Services.Products.FluentValidation;
 using Web_Store.Application.Services.Products.Queries.GetAllCategories;
 using Web_Store.Application.Services.Products.Queries.GetCategories;
+using Web_Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using Web_Store.Application.Services.Products.Queries.GetProductForAdmin;
 
 namespace Web_Store.Application.Services.Products.FacadPattern
 {
@@ -84,6 +87,31 @@ namespace Web_Store.Application.Services.Products.FacadPattern
             get
             {
                 return _Validation= _Validation ?? new Validation();
+            }
+        }
+        private IGetProductForAdminService _GetProductForAdminService;
+        public IGetProductForAdminService getProductForAdminService
+        {
+            get
+            {
+                return _GetProductForAdminService= _GetProductForAdminService ?? new GetProductForAdminService(_context);
+            }
+        }
+
+        private IGetProductDetailForAdminService _getProductDetailForAdmin;
+        public IGetProductDetailForAdminService getProductDetailForAdminService
+        {
+            get
+            {
+                return _getProductDetailForAdmin= _getProductDetailForAdmin ?? new GetProductDetailForAdminService(_context);
+            }
+        }
+        private IRemoveProductService _RemoveProductService;
+        public IRemoveProductService removeProductService
+        {
+            get
+            {
+                return _RemoveProductService= _RemoveProductService ?? new RemoveProductService(_context);
             }
         }
     }

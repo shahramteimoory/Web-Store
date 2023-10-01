@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Web_Store.Application.Interfaces.FluentValidation;
 using Web_Store.Application.Services.Products.Commands.AddNewCategory;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 using Web_Store.Application.Services.Products.Commands.EditCategory;
 using Web_Store.Application.Services.Products.Commands.RemoveCategory;
+using Web_Store.Application.Services.Products.Commands.RemoveProduct;
+using Web_Store.Application.Services.Products.FluentValidation;
 using Web_Store.Application.Services.Products.Queries.GetAllCategories;
 using Web_Store.Application.Services.Products.Queries.GetCategories;
+using Web_Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using Web_Store.Application.Services.Products.Queries.GetProductForAdmin;
 
 namespace Web_Store.Application.Interfaces.FacadPatterns
 {
@@ -25,5 +28,16 @@ namespace Web_Store.Application.Interfaces.FacadPatterns
         IGetAllCategoriesService GetAllCategoriesService { get; }
 
         Validation validationRules { get; }
+        /// <summary>
+        /// دریافت لیست محصولات برای مدیر
+        /// </summary>
+        IGetProductForAdminService getProductForAdminService { get; }
+
+        /// <summary>
+        /// دریافت جزعیات محصولات برای مدیر
+        /// </summary>
+        IGetProductDetailForAdminService getProductDetailForAdminService { get; }
+
+        IRemoveProductService removeProductService { get; }
     }
 }
