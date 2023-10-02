@@ -12,7 +12,9 @@ using Web_Store.Application.Services.Products.FluentValidation;
 using Web_Store.Application.Services.Products.Queries.GetAllCategories;
 using Web_Store.Application.Services.Products.Queries.GetCategories;
 using Web_Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using Web_Store.Application.Services.Products.Queries.GetProductDetailForSite;
 using Web_Store.Application.Services.Products.Queries.GetProductForAdmin;
+using Web_Store.Application.Services.Products.Queries.GetProductForSite;
 
 namespace Web_Store.Application.Interfaces.FacadPatterns
 {
@@ -39,5 +41,7 @@ namespace Web_Store.Application.Interfaces.FacadPatterns
         IGetProductDetailForAdminService getProductDetailForAdminService { get; }
 
         IRemoveProductService removeProductService { get; }
+        IGetProductForSiteService getProductForSiteService { get; }
+        IGetProductDetailForSiteService getProductDetailForSiteService { get; }
     }
 }

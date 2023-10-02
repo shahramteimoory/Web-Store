@@ -1,5 +1,6 @@
 ﻿@using Web_Store.Application.Services.Users.Queries.GetUsers
 @model ResultGetUserDto;
+@addTagHelper *, LazZiya.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
@@ -36,6 +37,7 @@
                                                 <tr role="row">
                                                     <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="نام: activate to sort column descending" style="width: 222px;">نام</th>
                                                     <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="ایمیل: activate to sort column ascending" style="width: 401px;">ایمیل</th>
+                                                <th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="نقش: activate to sort column ascending" style="width: 401px;">نقش</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -45,6 +47,20 @@
                                                             <tr role="row" class="odd">
                                                                 <td class="sorting_1">@item.FullName</td>
                                                                 <td>@item.Email</td>
+                                                    @if (item.Roles=="1")
+                                                    {
+                                                        <td>مدیر</td>
+                                                    }
+                                                    @if (item.Roles == "2")
+                                                    {
+                                                        <td>اپراتور</td>
+                                                    }
+                                                    @if (item.Roles == "3")
+                                                    {
+                                                        <td>مشتری</td>
+                                                    }
+                                                   
+                                                                 
                                                                 <td>
                                                                 <button class="btn btn-info" onclick="ShowModalEdituser('@item.Id', '@item.FullName','@item.Email')">ویرایش</button>
                                                                 <button class="btn btn-danger" onclick="DeleteUser('@item.Id', '@item.FullName')">حذف</button>
@@ -61,7 +77,22 @@
                                                             </tr>
                                                         }
 
+                                            
+                                                <paging total-records="Model.Rows"
+                                                        page-no="1"
+                                                        page-size="20"
+                                                        show-prev-next="true"
+                                                        show-total-pages="false"
+                                                        show-total-records="false"
+                                                        show-page-size-nav="true"
+                                                        show-first-numbered-page="true"
+                                                        show-last-numbered-page="true"
+                                                        query-string-key-page-no="Page"
+                                                        query-string-key-page-size="PageSize"
+                                                        gap-size="2">
+                                                </paging>
 
+                                            
 
 
                                                     </tbody>
@@ -70,7 +101,6 @@
                                                     </tfoot>*@
                                                 </table>
                                             </div>
-                                        </div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="DataTables_Table_0_info" role="status" aria-live="polite">نمایش 1 تا 10 از 57 سطرها</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_0_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="DataTables_Table_0_previous"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="0" tabindex="0" class="page-link">قبلی</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="DataTables_Table_0_next"><a href="#" aria-controls="DataTables_Table_0" data-dt-idx="7" tabindex="0" class="page-link">بعدی</a></li></ul></div></div></div>
                                     </div>
                                 </div>
                             </div>

@@ -15,7 +15,9 @@ using Web_Store.Application.Services.Products.FluentValidation;
 using Web_Store.Application.Services.Products.Queries.GetAllCategories;
 using Web_Store.Application.Services.Products.Queries.GetCategories;
 using Web_Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using Web_Store.Application.Services.Products.Queries.GetProductDetailForSite;
 using Web_Store.Application.Services.Products.Queries.GetProductForAdmin;
+using Web_Store.Application.Services.Products.Queries.GetProductForSite;
 
 namespace Web_Store.Application.Services.Products.FacadPattern
 {
@@ -112,6 +114,22 @@ namespace Web_Store.Application.Services.Products.FacadPattern
             get
             {
                 return _RemoveProductService= _RemoveProductService ?? new RemoveProductService(_context);
+            }
+        }
+        private IGetProductForSiteService _getProductForSiteService;
+        public IGetProductForSiteService getProductForSiteService
+        {
+            get
+            {
+                return _getProductForSiteService= _getProductForSiteService ?? new GetProductForSiteService(_context);
+            }
+        }
+        private IGetProductDetailForSiteService _getProductDetailForSiteService;
+        public IGetProductDetailForSiteService getProductDetailForSiteService
+        {
+            get
+            {
+                return _getProductDetailForSiteService= _getProductDetailForSiteService?? new GetProductDetailForSiteService(_context);
             }
         }
     }
