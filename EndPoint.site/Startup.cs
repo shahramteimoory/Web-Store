@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using System;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
+using Web_Store.Application.Services.Common.FacadPattern;
 using Web_Store.Application.Services.Products.FacadPattern;
 using Web_Store.Application.Services.Users.Commands.EditUser;
 using Web_Store.Application.Services.Users.Commands.RegisterUser;
@@ -59,6 +60,7 @@ namespace EndPoint.site
 
             //facad Inject be jaye in ke mesl bala 8 ta inject konim 
             services.AddScoped<IProductFacad, ProductFacad>();
+            services.AddScoped<ICommonFacad, CommonFacad>();
 
             string connectionString = "Data Source=DESKTOP-GSQBNGV ; Initial Catalog=Web-StoreDB;Integrated Security=true;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(Options=>Options.UseSqlServer(connectionString));

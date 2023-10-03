@@ -14,10 +14,17 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
         {
             _context=context;
         }
-        public ResultDto<ResultProductForSiteDto> Execute(int page )
+        public ResultDto<ResultProductForSiteDto> Execute(int page,long? CatId )
         {
             int totalRow = 0;
-            var product = _context.products.Include(p=>p.ProductImages).Where(p=>p.Display==true).ToPaged(page, 5, out totalRow);
+            var productQuery = _context.products.Include(p => p.ProductImages)
+                .Where(p => p.Display == true).AsQueryable();
+            if (CatId!=null)
+            {
+                productQuery=productQuery.Where(p=>p.CategoryId == CatId).AsQueryable();
+            }
+
+           var product= productQuery.ToPaged(page, 5, out totalRow);
 
             //felan ke system coment nadarim mizanim random star bede bebinim kar mikone ya na
             Random rd = new Random();
