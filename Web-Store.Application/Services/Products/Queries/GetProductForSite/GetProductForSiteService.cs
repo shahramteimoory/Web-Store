@@ -14,14 +14,18 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
         {
             _context=context;
         }
-        public ResultDto<ResultProductForSiteDto> Execute(int page,long? CatId )
+        public ResultDto<ResultProductForSiteDto> Execute(string SearchKey, int page,long? CatId)
         {
             int totalRow = 0;
             var productQuery = _context.products.Include(p => p.ProductImages)
                 .Where(p => p.Display == true).AsQueryable();
             if (CatId!=null)
             {
-                productQuery=productQuery.Where(p=>p.CategoryId == CatId).AsQueryable();
+                productQuery=productQuery.Where(p=>p.CategoryId == CatId || p.Category.ParentCategoryId==CatId).AsQueryable();
+            }
+            if (!string.IsNullOrWhiteSpace(SearchKey))
+            {
+                productQuery= productQuery.Where(c=>c.Name.Contains(SearchKey) || c.Brand.Contains(SearchKey)).AsQueryable();
             }
 
            var product= productQuery.ToPaged(page, 5, out totalRow);

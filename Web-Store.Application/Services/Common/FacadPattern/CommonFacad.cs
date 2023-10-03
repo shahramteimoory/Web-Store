@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
+using Web_Store.Application.Services.Common.Queries.GetCategory;
 using Web_Store.Application.Services.Common.Queries.GetMenuItem;
 
 namespace Web_Store.Application.Services.Common.FacadPattern
@@ -22,6 +23,14 @@ namespace Web_Store.Application.Services.Common.FacadPattern
             get
             {
                 return _getMenuService = _getMenuService ?? new GetMenuService(_context);
+            }
+        }
+        private IGetCategoryService _getCategoryService;
+        public IGetCategoryService getCategoryService
+        {
+            get
+            {
+                return _getCategoryService= _getCategoryService??new GetCategoryService(_context);
             }
         }
     }

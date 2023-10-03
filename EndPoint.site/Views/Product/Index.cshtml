@@ -44,7 +44,7 @@
                             <div class="col-lg-4 col-md-4 col-xs-12 order-1 d-block mb-4">
                                 <section class="product-box product product-type-simple">
                                     <div class="thumb">
-                                        <a href="#" class="d-block">
+                                        <a href="~/Product/Details/@item.Id" class="d-block">
                                             <div class="product-rate">
                                                 @for (int i = 1; i <= item.Star; i++)
                                                 {
@@ -55,7 +55,7 @@
                                                     <i class="fa fa-star"></i>
                                                 }
                                             </div>
-                                            <img src="~/@item.ImageSrc">
+                                            <img width="400" height="300" src="~/@item.ImageSrc">
                                         </a>
                                     </div>
                                     <div class="title">
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="pagination-product">
+        @* <div class="pagination-product">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                     <li class="page-item">
@@ -98,7 +98,7 @@
                     </li>
                 </ul>
             </nav>
-        </div>
+        </div> *@
     </div>
 </div>
 
