@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web_Store.Persistance.Contexts;
 
 namespace Web_Store.Persistance.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231005125250_Addslider")]
+    partial class Addslider
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,9 +35,6 @@ namespace Web_Store.Persistance.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("RemoveTime")
@@ -231,21 +230,21 @@ namespace Web_Store.Persistance.Migrations
                         new
                         {
                             Id = 1L,
-                            InsertTime = new DateTime(2023, 10, 6, 0, 36, 55, 880, DateTimeKind.Local).AddTicks(8346),
+                            InsertTime = new DateTime(2023, 10, 5, 16, 22, 49, 965, DateTimeKind.Local).AddTicks(5031),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2L,
-                            InsertTime = new DateTime(2023, 10, 6, 0, 36, 55, 882, DateTimeKind.Local).AddTicks(3098),
+                            InsertTime = new DateTime(2023, 10, 5, 16, 22, 49, 967, DateTimeKind.Local).AddTicks(4257),
                             IsRemoved = false,
                             Name = "Operator"
                         },
                         new
                         {
                             Id = 3L,
-                            InsertTime = new DateTime(2023, 10, 6, 0, 36, 55, 882, DateTimeKind.Local).AddTicks(3187),
+                            InsertTime = new DateTime(2023, 10, 5, 16, 22, 49, 967, DateTimeKind.Local).AddTicks(4337),
                             IsRemoved = false,
                             Name = "Customer"
                         });

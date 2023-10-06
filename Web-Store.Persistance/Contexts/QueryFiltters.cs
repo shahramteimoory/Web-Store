@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Web_Store.Domain.Entites.HomePage;
 using Web_Store.Domain.Entites.Products;
 using Web_Store.Domain.Entites.Users;
 
@@ -15,7 +16,8 @@ namespace Web_Store.Persistance.Contexts
             modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<ProductFeatures>().HasQueryFilter(pf => !pf.IsRemoved);
             modelBuilder.Entity<ProductImages>().HasQueryFilter(pi => !pi.IsRemoved);
-            
+            modelBuilder.Entity<Slider>().HasQueryFilter(s => !s.IsRemoved);
+
         }
     }
 }

@@ -3,54 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Web_Store.Persistance.Contexts;
 
 namespace Web_Store.Persistance.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231004070727_add_ViewCountInProduct")]
+    partial class add_ViewCountInProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Web_Store.Domain.Entites.HomePage.Slider", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("InsertTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Link")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("RemoveTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Src")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("sliders");
-                });
 
             modelBuilder.Entity("Web_Store.Domain.Entites.Products.Category", b =>
                 {
@@ -231,21 +200,21 @@ namespace Web_Store.Persistance.Migrations
                         new
                         {
                             Id = 1L,
-                            InsertTime = new DateTime(2023, 10, 6, 0, 36, 55, 880, DateTimeKind.Local).AddTicks(8346),
+                            InsertTime = new DateTime(2023, 10, 4, 10, 37, 27, 523, DateTimeKind.Local).AddTicks(4831),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2L,
-                            InsertTime = new DateTime(2023, 10, 6, 0, 36, 55, 882, DateTimeKind.Local).AddTicks(3098),
+                            InsertTime = new DateTime(2023, 10, 4, 10, 37, 27, 525, DateTimeKind.Local).AddTicks(424),
                             IsRemoved = false,
                             Name = "Operator"
                         },
                         new
                         {
                             Id = 3L,
-                            InsertTime = new DateTime(2023, 10, 6, 0, 36, 55, 882, DateTimeKind.Local).AddTicks(3187),
+                            InsertTime = new DateTime(2023, 10, 4, 10, 37, 27, 525, DateTimeKind.Local).AddTicks(518),
                             IsRemoved = false,
                             Name = "Customer"
                         });

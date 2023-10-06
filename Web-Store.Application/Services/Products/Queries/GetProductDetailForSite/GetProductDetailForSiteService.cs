@@ -30,6 +30,8 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductDetailForSit
                     Message = "محصول مورد نظر یافت نشد"
                 };
             }
+            product.ViewCount++;
+            _context.SaveChanges();
             return new ResultDto<ProductDetailForSiteDto>()
             {
                 Data = new ProductDetailForSiteDto

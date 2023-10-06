@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
+using Web_Store.Domain.Entites.HomePage;
 using Web_Store.Domain.Entites.Products;
 using Web_Store.Domain.Entites.Users;
 
@@ -26,6 +27,7 @@ namespace Web_Store.Persistance.Contexts
         public DbSet<Product> products { get; set;}
         public DbSet<ProductFeatures> ProductFeatures { get; set; }
         public DbSet<ProductImages> productImages { get; set; }
+        public DbSet<Slider> sliders {  get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

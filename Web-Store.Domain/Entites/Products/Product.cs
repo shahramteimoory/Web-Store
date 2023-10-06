@@ -15,6 +15,7 @@ namespace Web_Store.Domain.Entites.Products
         public int Price { get; set; }
         public int Inventory { get; set; }
         public bool Display { get; set; }
+        public int ViewCount { get; set; }
         public virtual Category Category { get; set; }
         public long CategoryId { get; set; }
         public virtual ICollection<ProductImages> ProductImages { get; set; }

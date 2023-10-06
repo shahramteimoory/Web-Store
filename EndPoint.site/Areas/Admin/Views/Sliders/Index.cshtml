@@ -1,0 +1,106 @@
+﻿@using Web_Store.Application.Services.Common.Queries.GetSlider;
+@model List<SliderDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="content-wrapper">
+    <div class="container-fluid">
+        <section id="configuration">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title-wrap bar-success">
+                            <h4 class="card-title">لیست اسلایدرها</h4>
+                            <div class="card-body collapse show">
+                                <div class="card-block card-dashboard">
+                                    <p class="card-text">اسلایدرهای فروشگاه شهرام</p>
+                                    <a href="~/admin/Sliders/Add" class="btn btn-success">افزودن اسلایدر جدید</a>
+                                    <div class="row">
+                                        @foreach (var item in Model)
+                                        {
+                                            <div class="col-lg-4 col-md-4 col-xs-12 order-1 d-block mb-4">
+                                            <section class="product-box product product-type-simple">
+                                                <div class="thumb">
+                                                        <a href="@item.Link" class="d-block">
+                                                            <div class="product-rate">
+
+                                                            </div>
+                                                            <img width="400" height="300" src="~/@item.Src">
+                                                        </a>
+                                                </div>
+                                                    <div class="title">
+                                                        <a href="@item.Link">@item.Name</a>
+                                                    </div>
+                                                    <div class="Button">
+                                                        <span class="Button">
+                                                            <button class="btn btn-danger" onclick="DeleteSlider('@item.Id', '@item.Name')">حذف</button>
+                                                        </span>
+                                                    </div>
+                                            </section>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts
+{
+    <link href="~/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/sweetalert2/sweetalert2.min.js"></script>
+
+    <script>
+        function DeleteSlider(SliderId, Name) {
+            swal.fire({
+                title: 'حذف دسته یندی',
+                text: "از حذف   " + Name + " مطمئن هستید؟",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'بله حذف شود',
+                cancelButtonText: 'خیر'
+            }).then((result) => {
+                if (result.value) {
+                    var postData = {
+                        'SliderId': SliderId,
+                    };
+                    $.ajax({
+                        contentType: 'application/x-www-form-urlencoded',
+                        dataType: 'json',
+                        type: "POST",
+                        url: "Delete",
+                        data: postData,
+                        success: function (data) {
+                            if (data.isSuccess == true) {
+                                swal.fire(
+                                    'موفق!',
+                                    data.message,
+                                    'success'
+                                ).then(function (isConfirm) {
+                                    location.reload();
+                                });
+                            } else {
+                                swal.fire(
+                                    'هشدار!',
+                                    data.message,
+                                    'warning'
+                                );
+                            }
+                        },
+                        error: function (request, status, error) {
+                            alert(request.responseText);
+                        }
+                    });
+                }
+            });
+        }
+    </script>      
+}

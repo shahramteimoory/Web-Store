@@ -6,6 +6,6 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
 {
     public interface IGetProductForSiteService
     {
-        ResultDto<ResultProductForSiteDto> Execute(string SearchKey, int page,long? CatId);
+        ResultDto<ResultProductForSiteDto> Execute(Ordering ordering,string SearchKey, int page,int PageSize,long? CatId);
     }
 }

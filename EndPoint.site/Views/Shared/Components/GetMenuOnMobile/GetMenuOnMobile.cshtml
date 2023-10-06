@@ -1,0 +1,28 @@
+﻿@using Web_Store.Application.Services.Common.Queries.GetMenuItem;
+@model List<MenuItemDto>;
+@{
+    Layout = null;
+}
+
+<ul class="nav-categories ul-base">
+    @foreach (var item in Model)
+    {
+        <li>
+            <a href="#" class="collapsed" type="button" data-toggle="collapse" data-target="#collapse@(item.CatId)" aria-expanded="false" aria-controls="collapse@(item.CatId)">
+                <i class="mdi mdi-chevron-down"></i>
+                @item.Name
+            </a>
+            @if (item.Child.Count() > 0)
+            {
+                <div id="collapse@(item.CatId)" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <ul class="has-sub">
+                        @foreach (var itemChild in item.Child)
+                        {
+                            <li><a href="~/Product/index?CatId=@itemChild.CatId" class="category-level-3">@itemChild.Name</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+        </li>
+    }
+</ul>

@@ -14,7 +14,7 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
         {
             _context=context;
         }
-        public ResultDto<ResultProductForSiteDto> Execute(string SearchKey, int page,long? CatId)
+        public ResultDto<ResultProductForSiteDto> Execute(Ordering ordering, string SearchKey, int page,int PageSize, long? CatId)
         {
             int totalRow = 0;
             var productQuery = _context.products.Include(p => p.ProductImages)
@@ -27,8 +27,32 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
             {
                 productQuery= productQuery.Where(c=>c.Name.Contains(SearchKey) || c.Brand.Contains(SearchKey)).AsQueryable();
             }
+            switch (ordering)
+            {
+                case Ordering.NotOrder:
+                    productQuery = productQuery.OrderByDescending(c=>c.Id).AsQueryable();
+                    break;
+                case Ordering.MostVisited:
+                    productQuery = productQuery.OrderByDescending(c => c.ViewCount).AsQueryable();
+                    break;
+                case Ordering.Bestselling:
+                    break;
+                case Ordering.MostPopular:
+                    break;
+                case Ordering.theNewest:
+                    productQuery = productQuery.OrderByDescending(c => c.Id).AsQueryable();
+                    break;
+                case Ordering.Cheapest:
+                    productQuery = productQuery.OrderBy(c => c.Price).AsQueryable();
+                    break;
+                case Ordering.theMostExpensive:
+                    productQuery = productQuery.OrderByDescending(c => c.Price).AsQueryable();
+                    break;
+                default:
+                    break;
+            }
 
-           var product= productQuery.ToPaged(page, 5, out totalRow);
+            var product= productQuery.ToPaged(page, PageSize, out totalRow);
 
             //felan ke system coment nadarim mizanim random star bede bebinim kar mikone ya na
             Random rd = new Random();
