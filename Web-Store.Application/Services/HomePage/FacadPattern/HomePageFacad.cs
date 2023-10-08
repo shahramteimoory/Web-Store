@@ -6,8 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
+using Web_Store.Application.Services.HomePage.Commands.AddHomePageImages;
 using Web_Store.Application.Services.HomePage.Commands.AddNewSlider;
+using Web_Store.Application.Services.HomePage.Commands.DeleteImagesSite;
 using Web_Store.Application.Services.HomePage.Commands.DeleteSlider;
+using Web_Store.Application.Services.HomePage.Queries.GetAllImageSite;
 using Web_Store.Application.Services.HomePage.Queries.GetAllSlider;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 
@@ -22,8 +25,8 @@ namespace Web_Store.Application.Services.HomePage.FacadPattern
             _context= context;
             _environment= environment;
         }
-        private AddNewSliderService _AddNewSliderService;
-        public AddNewSliderService AddNewSliderService
+        private IAddNewSliderService _AddNewSliderService;
+        public IAddNewSliderService AddNewSliderService
         {
             get
             {
@@ -44,6 +47,30 @@ namespace Web_Store.Application.Services.HomePage.FacadPattern
             get
             {
                 return _deleteSliderService = _deleteSliderService ?? new DeleteSliderService(_context);
+            }
+        }
+        private IAddHomePageImagesService _AddHomePageImagesService;
+        public IAddHomePageImagesService AddHomePageImagesService
+        {
+            get
+            {
+                return _AddHomePageImagesService = _AddHomePageImagesService ?? new AddHomePageImagesService(_context, _environment);
+            }
+        }
+        private IGetImageSiteService _igetImageSiteService;
+        public IGetImageSiteService igetImageSiteService
+        {
+            get
+            {
+               return _igetImageSiteService = _igetImageSiteService ?? new getImageSiteService(_context);
+            }
+        }
+        private IDeleteHomeImagesService _deleteHomeImages;
+        public IDeleteHomeImagesService deleteHomeImages
+        {
+            get
+            {
+                return _deleteHomeImages= _deleteHomeImages ?? new DeleteHomeImagesService(_context);
             }
         }
     }

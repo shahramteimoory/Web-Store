@@ -14,10 +14,12 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductDetailForSit
         }
         public ResultDto<ProductDetailForSiteDto> Execute(long Id)
         {
-            var product = _context.products.Include(p=>p.Category)
-                //vaghti include mizarim dige nemishe find gozasht bayad where bezarim
-                .ThenInclude(p=>p.ParentCategory).Include(p=>p.ProductImages)
-                .Include(p=>p.ProductFeatures).Where(p=>p.Id==Id).FirstOrDefault();
+            var product = _context.products
+                .Include(p=>p.Category).ThenInclude(p=>p.ParentCategory)//vaghti include mizarim dige nemishe find gozasht bayad where bezarim
+                .Include(p=>p.ProductImages)
+                .Include(p=>p.ProductFeatures)
+                .Where(p=>p.Id==Id)
+                .FirstOrDefault();
             if (product==null)
             {
                 return new ResultDto<ProductDetailForSiteDto>()

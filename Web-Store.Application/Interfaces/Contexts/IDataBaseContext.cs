@@ -24,6 +24,7 @@ namespace Web_Store.Application.Interfaces.Contexts
         DbSet<ProductFeatures>ProductFeatures { get; set; }
         DbSet<ProductImages>productImages { get; set; }
         DbSet<Slider> sliders { get; set; }
+        DbSet<HomePageImages> HomePageImages { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

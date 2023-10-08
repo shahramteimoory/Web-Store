@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Common.Queries.GetCategory;
+using Web_Store.Application.Services.Common.Queries.GetHomePageImage;
 using Web_Store.Application.Services.Common.Queries.GetMenuItem;
 using Web_Store.Application.Services.Common.Queries.GetSlider;
 
@@ -40,6 +41,15 @@ namespace Web_Store.Application.Services.Common.FacadPattern
             get
             {
                 return _getSliderService = _getSliderService ?? new GetSliderService(_context);
+            }
+        }
+
+        private IGetHomePageImageService _getHomePageImageService;
+        public IGetHomePageImageService getHomePageImageService
+        {
+            get
+            {
+                return _getHomePageImageService= _getHomePageImageService ?? new GetHomePageImageService(_context);
             }
         }
     }

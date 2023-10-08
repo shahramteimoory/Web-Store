@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using Web_Store.Application.Interfaces.FacadPatterns;
@@ -26,19 +27,19 @@ namespace EndPoint.site.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(IFormFile File,string Link,string Name)
+        public IActionResult Add(IFormFile File, string Link, string Name)
         {
-            
-            if (File == null && Link == null || Name==null)
+
+            if (File is null)
             {
-                var res= new ResultDto()
+                var res = new ResultDto()
                 {
                     IsSuccess = false,
                     Message = "لطفا اطلاعات را وارد کنید"
                 };
                 return Json(res);
             }
-            var result=_homePageFacad.AddNewSliderService.Execute(File, Link,Name);
+            var result = _homePageFacad.AddNewSliderService.Execute(File, Link, Name);
             return Json(result);
         }
         [HttpPost]

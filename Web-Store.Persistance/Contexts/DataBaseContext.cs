@@ -28,6 +28,7 @@ namespace Web_Store.Persistance.Contexts
         public DbSet<ProductFeatures> ProductFeatures { get; set; }
         public DbSet<ProductImages> productImages { get; set; }
         public DbSet<Slider> sliders {  get; set; }
+        public DbSet<HomePageImages> HomePageImages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

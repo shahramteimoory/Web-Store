@@ -17,7 +17,7 @@ namespace Web_Store.Persistance.Contexts
             modelBuilder.Entity<ProductFeatures>().HasQueryFilter(pf => !pf.IsRemoved);
             modelBuilder.Entity<ProductImages>().HasQueryFilter(pi => !pi.IsRemoved);
             modelBuilder.Entity<Slider>().HasQueryFilter(s => !s.IsRemoved);
-
+            modelBuilder.Entity<HomePageImages>().HasQueryFilter(hpi => !hpi.IsRemoved);
         }
     }
 }
