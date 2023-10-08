@@ -19,12 +19,17 @@ namespace EndPoint.site.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ICommonFacad _commonFacad;
         private readonly IProductFacad _productFacad;
-
-        public HomeController(ILogger<HomeController> logger, ICommonFacad commonFacad, IProductFacad productFacad)
+        private readonly IHomePageFacad _homePageFacad;
+        public HomeController(
+            ILogger<HomeController> logger, 
+            ICommonFacad commonFacad, 
+            IProductFacad productFacad, 
+            IHomePageFacad homePageFacad)
         {
             _logger = logger;
             _commonFacad = commonFacad;
             _productFacad = productFacad;
+            _homePageFacad = homePageFacad;
         }
 
         public IActionResult Index()
@@ -32,8 +37,9 @@ namespace EndPoint.site.Controllers
             HomePageViewModel homePage = new HomePageViewModel()
             {
                 Sliders = _commonFacad.getSliderService.Execute().Data,
-                PageImages=_commonFacad.getHomePageImageService.Execute().Data,
-                ProductsForSite1 = _productFacad.getProductForSiteService.Execute(Ordering.MostVisited, null, 1, 6,1).Data.products,
+                PageImages = _commonFacad.getHomePageImageService.Execute().Data,
+                ProductsForSite1 = _productFacad.getProductForSiteService.Execute(Ordering.MostVisited, null, 1, 6, 1).Data.products,
+                CategoryHomePageDto = _homePageFacad.productCategoryHomePageService.Execute()
             };
             return View(homePage);
         }

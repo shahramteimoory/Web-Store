@@ -9,6 +9,7 @@ using Web_Store.Application.Services.HomePage.Commands.DeleteImagesSite;
 using Web_Store.Application.Services.HomePage.Commands.DeleteSlider;
 using Web_Store.Application.Services.HomePage.Queries.GetAllImageSite;
 using Web_Store.Application.Services.HomePage.Queries.GetAllSlider;
+using Web_Store.Application.Services.HomePage.Queries.ProductCategoryHomePage;
 
 namespace Web_Store.Application.Interfaces.FacadPatterns
 {
@@ -20,5 +21,6 @@ namespace Web_Store.Application.Interfaces.FacadPatterns
         IAddHomePageImagesService AddHomePageImagesService { get; }
         IGetImageSiteService igetImageSiteService { get; }
         IDeleteHomeImagesService deleteHomeImages { get; }
+        IProductCategoryHomePageService productCategoryHomePageService { get; }
     }
 }

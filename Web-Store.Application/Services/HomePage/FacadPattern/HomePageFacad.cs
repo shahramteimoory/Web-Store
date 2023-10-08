@@ -12,6 +12,7 @@ using Web_Store.Application.Services.HomePage.Commands.DeleteImagesSite;
 using Web_Store.Application.Services.HomePage.Commands.DeleteSlider;
 using Web_Store.Application.Services.HomePage.Queries.GetAllImageSite;
 using Web_Store.Application.Services.HomePage.Queries.GetAllSlider;
+using Web_Store.Application.Services.HomePage.Queries.ProductCategoryHomePage;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 
 namespace Web_Store.Application.Services.HomePage.FacadPattern
@@ -71,6 +72,15 @@ namespace Web_Store.Application.Services.HomePage.FacadPattern
             get
             {
                 return _deleteHomeImages= _deleteHomeImages ?? new DeleteHomeImagesService(_context);
+            }
+        }
+
+        private IProductCategoryHomePageService _productCategoryHomePageService;
+        public IProductCategoryHomePageService productCategoryHomePageService
+        {
+            get
+            {
+                return _productCategoryHomePageService = _productCategoryHomePageService ?? new ProductCategoryHomePageService(_context);
             }
         }
     }
