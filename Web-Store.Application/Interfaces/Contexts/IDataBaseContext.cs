@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Web_Store.Domain.Entites.HomePage;
 using Web_Store.Domain.Entites.Products;
 using Web_Store.Domain.Entites.Users;
+using Web_Store.Domain.Entites.Carts;
 
 namespace Web_Store.Application.Interfaces.Contexts
 {
@@ -25,6 +26,8 @@ namespace Web_Store.Application.Interfaces.Contexts
         DbSet<ProductImages>productImages { get; set; }
         DbSet<Slider> sliders { get; set; }
         DbSet<HomePageImages> HomePageImages { get; set; }
+        DbSet<Cart> carts { get; set; }
+        DbSet<CartItems> cartItems { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();
