@@ -12,7 +12,7 @@ namespace Web_Store.Domain.Entites.Carts
     public class Cart: BaseEntites
     {
         public virtual User User { get; set; }
-        public long UserId { get; set; }
+        public long? UserId { get; set; }
         public Guid BrowserId { get; set; }
         public bool Finished { get; set; }
         public ICollection<CartItems> cartItems { get; set; }

@@ -5,6 +5,24 @@ namespace EndPoint.site.Utilities
 {
     public class CookiesManeger
     {
+        /// <summary>
+        /// چک میکنه اگه توکن داشته باشه میخونه اگه نداشته باشه ادد میکنه
+        /// </summary>
+        /// <returns></returns>
+        public Guid GetBrowserId(HttpContext context)
+        {
+
+           string browserId=GetValue(context, "BrowserId");
+            if (browserId == null)
+            {
+                string value = Guid.NewGuid().ToString();
+                Add(context, "BrowserId", value);
+                browserId = value;
+            }
+            Guid guidbrowser;
+            Guid.TryParse(browserId, out guidbrowser);
+            return guidbrowser;
+        }
         public void Add(HttpContext context, string token, string value)
         {
             context.Response.Cookies.Append(token, value, getCookieOptions(context));

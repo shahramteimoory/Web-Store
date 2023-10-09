@@ -1,3 +1,4 @@
+using EndPoint.site.Utilities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using Microsoft.Extensions.Options;
 using System;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
+using Web_Store.Application.Services.Carts;
 using Web_Store.Application.Services.Common.FacadPattern;
 using Web_Store.Application.Services.HomePage.FacadPattern;
 using Web_Store.Application.Services.Products.FacadPattern;
@@ -63,6 +65,9 @@ namespace EndPoint.site
             services.AddScoped<IProductFacad, ProductFacad>();
             services.AddScoped<ICommonFacad, CommonFacad>();
             services.AddScoped<IHomePageFacad, HomePageFacad>();
+            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<CookiesManeger, CookiesManeger>();
+            
 
             string connectionString = "Data Source=DESKTOP-GSQBNGV ; Initial Catalog=Web-StoreDB;Integrated Security=true;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(Options=>Options.UseSqlServer(connectionString));
