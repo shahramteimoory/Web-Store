@@ -7,7 +7,7 @@ namespace Web_Store.Application.Services.Carts
 {
     public interface ICartService
     {
-        ResultDto AddToCart(long ProductId, Guid BroserId);
+        ResultDto AddToCart(int count, long ProductId, Guid BroserId);
         ResultDto RemoveFromCart(long ProductId, Guid BroserId);
         ResultDto<CartDto> GetMyCart (Guid BroserId);
         ResultDto Add(long CartItemId);

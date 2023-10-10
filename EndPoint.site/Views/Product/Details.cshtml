@@ -277,7 +277,7 @@
                                             <div class="product-seller-row guarantee">
                                                 <span class="title mt-3"> تعداد:</span>
                                                 <div class="quantity pl">
-                                                    <input type="number" min="1" max="100" step="1" value="1"><div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>
+                                                    <input type="number" id="quantityInput" min="1" max="100" step="1" value="1"><div class="quantity-nav"><div class="quantity-button quantity-up">+</div><div class="quantity-button quantity-down">-</div></div>
                                                 </div>
                                             </div>
                                             <div class="product-seller-row add-to-cart">
@@ -867,10 +867,12 @@
             }).then((result) => {
                 if (result.value) {
                     var id = document.getElementById('@Model.Id').getAttribute('name');
+                    var count = document.getElementById('quantityInput').value;
+                    
 
                     var formData = new FormData();
                     formData.append('prductId', id);
-
+                    formData.append('count', count);
                     $.ajax({
                         contentType: false,
                         processData: false,

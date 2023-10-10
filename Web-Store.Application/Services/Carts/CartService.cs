@@ -26,7 +26,7 @@ namespace Web_Store.Application.Services.Carts
             };
         }
 
-        public ResultDto AddToCart(long ProductId, Guid BroserId)
+        public ResultDto AddToCart(int count, long ProductId, Guid BroserId)
         {
             //چک میکنیم اگه سبد خرید وجود داشت  به سبد قبلی اضافه شه
             var cart=_context.carts.Where(c=>c.BrowserId==BroserId && c.Finished==false).FirstOrDefault();
@@ -66,7 +66,7 @@ namespace Web_Store.Application.Services.Carts
                 CartItems newcartItem = new CartItems()
                 {
                     Cart= cart,
-                    Count= 1,
+                    Count= count,
                     Price=product.Price,
                     Product=product,
                     

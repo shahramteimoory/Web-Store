@@ -22,9 +22,9 @@ namespace EndPoint.site.Controllers
             return View(result.Data);
         }
         [HttpPost]
-        public IActionResult AddToCart(long prductId)
+        public IActionResult AddToCart(long prductId,int count)
         {
-          var res=_cartService.AddToCart(prductId, _cookieManager.GetBrowserId(HttpContext));
+          var res=_cartService.AddToCart(count, prductId, _cookieManager.GetBrowserId(HttpContext));
             return Json(res);
         }
 
