@@ -1,6 +1,7 @@
 ﻿using EndPoint.site.Utilities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using Web_Store.Application.Services.Carts;
 
 namespace EndPoint.site.Controllers
@@ -23,7 +24,46 @@ namespace EndPoint.site.Controllers
         [HttpPost]
         public IActionResult AddToCart(long prductId)
         {
-          _cartService.AddToCart(prductId, _cookieManager.GetBrowserId(HttpContext));
+          var res=_cartService.AddToCart(prductId, _cookieManager.GetBrowserId(HttpContext));
+            return Json(res);
+        }
+
+        public IActionResult Add(long CartItemId)
+        {
+          
+                Guid browserId = _cookieManager.GetBrowserId(HttpContext);
+                var userCart = _cartService.GetMyCart(browserId).Data;
+
+                foreach (var cartItem in userCart.cartItems)
+                {
+                    if (CartItemId == cartItem.Id)
+                    {
+                    _cartService.Add(CartItemId);
+                    return RedirectToAction("Index");
+                    }
+                }
+                return RedirectToAction("Index");
+          
+        }
+        public IActionResult LowOff(long CartItemId)
+        {
+
+            Guid browserId = _cookieManager.GetBrowserId(HttpContext);
+            var userCart = _cartService.GetMyCart(browserId).Data;
+
+            foreach (var cartItem in userCart.cartItems)
+            {
+                if (CartItemId == cartItem.Id)
+                {
+                    _cartService.LowOff(CartItemId);
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Index");
+        }
+        public IActionResult Remove(long ProductId)
+        {
+            _cartService.RemoveFromCart(ProductId, _cookieManager.GetBrowserId(HttpContext));
             return RedirectToAction("Index");
         }
     }

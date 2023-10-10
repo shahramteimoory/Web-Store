@@ -14,6 +14,18 @@ namespace Web_Store.Application.Services.Carts
         {
             _context=context;
         }
+
+        public ResultDto Add(long CartItemId)
+        {
+            var cartitem = _context.cartItems.Find(CartItemId);
+            cartitem.Count++;
+            _context.SaveChanges();
+            return new ResultDto
+            {
+                IsSuccess = true,
+            };
+        }
+
         public ResultDto AddToCart(long ProductId, Guid BroserId)
         {
             //چک میکنیم اگه سبد خرید وجود داشت  به سبد قبلی اضافه شه
@@ -66,7 +78,7 @@ namespace Web_Store.Application.Services.Carts
             return new ResultDto
             {
                 IsSuccess = true,
-                Message=$"محصول{product.Name}با موفقیت به سبد شما اضافه شد"
+                Message=$" محصول { product.Name } با موفقیت به سبد شما اضافه شد "
             };
         }
 
@@ -91,6 +103,24 @@ namespace Web_Store.Application.Services.Carts
                         
                     }).ToList(),
                 },
+                IsSuccess = true,
+            };
+        }
+
+        public ResultDto LowOff(long CartItemId)
+        {
+            var cartitem = _context.cartItems.Find(CartItemId);
+            if (cartitem.Count == 1) 
+            {
+                return new ResultDto()
+                {
+                    IsSuccess = false
+                };
+            }
+            cartitem.Count--;
+            _context.SaveChanges();
+            return new ResultDto
+            {
                 IsSuccess = true,
             };
         }
