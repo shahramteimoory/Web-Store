@@ -18,7 +18,9 @@ namespace EndPoint.site.Controllers
         }
         public IActionResult Index()
         {
-          var result=_cartService.GetMyCart(_cookieManager.GetBrowserId(HttpContext));
+           var userId=ClaimUtilities.GetUserId(User);
+
+          var result=_cartService.GetMyCart(_cookieManager.GetBrowserId(HttpContext), userId);
             return View(result.Data);
         }
         [HttpPost]
@@ -30,9 +32,9 @@ namespace EndPoint.site.Controllers
 
         public IActionResult Add(long CartItemId)
         {
-          
-                Guid browserId = _cookieManager.GetBrowserId(HttpContext);
-                var userCart = _cartService.GetMyCart(browserId).Data;
+            var userId = ClaimUtilities.GetUserId(User);
+            Guid browserId = _cookieManager.GetBrowserId(HttpContext);
+                var userCart = _cartService.GetMyCart(browserId, userId).Data;
 
                 foreach (var cartItem in userCart.cartItems)
                 {
@@ -47,9 +49,9 @@ namespace EndPoint.site.Controllers
         }
         public IActionResult LowOff(long CartItemId)
         {
-
+            var userId = ClaimUtilities.GetUserId(User);
             Guid browserId = _cookieManager.GetBrowserId(HttpContext);
-            var userCart = _cartService.GetMyCart(browserId).Data;
+            var userCart = _cartService.GetMyCart(browserId, userId).Data;
 
             foreach (var cartItem in userCart.cartItems)
             {

@@ -9,7 +9,7 @@ namespace Web_Store.Application.Services.Carts
     {
         ResultDto AddToCart(int count, long ProductId, Guid BroserId);
         ResultDto RemoveFromCart(long ProductId, Guid BroserId);
-        ResultDto<CartDto> GetMyCart (Guid BroserId);
+        ResultDto<CartDto> GetMyCart (Guid BroserId,long? userId);
         ResultDto Add(long CartItemId);
         ResultDto LowOff(long CartItemId);
     }

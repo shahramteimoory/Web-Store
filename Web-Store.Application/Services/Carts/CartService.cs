@@ -82,17 +82,42 @@ namespace Web_Store.Application.Services.Carts
             };
         }
 
-        public ResultDto<CartDto> GetMyCart(Guid BroserId)
+        public ResultDto<CartDto> GetMyCart(Guid BroserId, long? userId)
         {
+            var newcarts = _context.carts.Where(c => c.BrowserId == BroserId && c.Finished == false).FirstOrDefault();
+            if (newcarts == null)
+            {
+                Cart newCart = new Cart()
+                {
+                    Finished = false,
+                    BrowserId = BroserId,
+
+                };
+                _context.carts.Add(newCart);
+                _context.SaveChanges();
+                newcarts = newCart;
+
+            }
+
             var cart=_context.carts.Include(c=>c.cartItems)
                 .ThenInclude(c=>c.Product)
                 .ThenInclude(c=>c.ProductImages)
                 .Where(c=>c.BrowserId==BroserId && c.Finished==false)
                 .OrderByDescending(c=>c.Id).FirstOrDefault();
+
+            if (userId!=null)
+            {
+                var user = _context.users.Find(userId);
+                cart.User = user;
+                _context.SaveChanges();
+            }
+
             return new ResultDto<CartDto>()
             {
                 Data = new CartDto
                 {
+                    ProductCount = cart.cartItems.Count(),
+                    SumAmount=cart.cartItems.Sum(c=>c.Price * c.Count),
                     cartItems = cart.cartItems.Select(c => new CartItemDto
                     {
                         Count = c.Count,
@@ -100,7 +125,8 @@ namespace Web_Store.Application.Services.Carts
                         Product=c.Product.Name,
                         Id=c.Id,
                         Image=c.Product.ProductImages.FirstOrDefault().Src,
-                        
+                        ProductId=c.Product.Id
+
                     }).ToList(),
                 },
                 IsSuccess = true,
