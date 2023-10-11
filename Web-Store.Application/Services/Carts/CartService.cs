@@ -91,7 +91,7 @@ namespace Web_Store.Application.Services.Carts
                 {
                     Finished = false,
                     BrowserId = BroserId,
-
+                    
                 };
                 _context.carts.Add(newCart);
                 _context.SaveChanges();
@@ -118,6 +118,7 @@ namespace Web_Store.Application.Services.Carts
                 {
                     ProductCount = cart.cartItems.Count(),
                     SumAmount=cart.cartItems.Sum(c=>c.Price * c.Count),
+                    CartId=cart.Id,
                     cartItems = cart.cartItems.Select(c => new CartItemDto
                     {
                         Count = c.Count,

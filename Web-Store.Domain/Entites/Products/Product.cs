@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Web_Store.Domain.Entites.Commons;
+using Web_Store.Domain.Entites.Orders;
 
 namespace Web_Store.Domain.Entites.Products
 {
@@ -20,6 +21,7 @@ namespace Web_Store.Domain.Entites.Products
         public long CategoryId { get; set; }
         public virtual ICollection<ProductImages> ProductImages { get; set; }
         public virtual ICollection<ProductFeatures> ProductFeatures { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
     }
 }

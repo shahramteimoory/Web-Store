@@ -7,6 +7,7 @@ using System;
 using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Carts;
+using Web_Store.Application.Services.Orders.Commands.AddPayedOrder;
 using ZarinPal.Class;
 
 namespace EndPoint.site.Controllers
@@ -20,17 +21,21 @@ namespace EndPoint.site.Controllers
         private readonly Payment _payment;
         private readonly Authority _authority;
         private readonly Transactions _transactions;
+        private readonly IOrdersFacad _ordersFacad;
         public PayController(IFinancesFacad finances
             , ICartService cartService
-            , CookiesManeger cookiesManeger)
+            , CookiesManeger cookiesManeger,
+                IOrdersFacad ordersFacad)
         {
-            _finances=finances;
-            _cartService=cartService;
-            _cookieManager=cookiesManeger;
+            _finances = finances;
+            _cartService = cartService;
+            _cookieManager = cookiesManeger;
             var expose = new Expose();
             _payment = expose.CreatePayment();
             _authority = expose.CreateAuthority();
             _transactions = expose.CreateTransactions();
+            _ordersFacad = ordersFacad;
+
         }
         public async Task<IActionResult> Index()
         {
@@ -84,9 +89,19 @@ namespace EndPoint.site.Controllers
                     MerchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
                     Authority = authority
                 }, Payment.Mode.sandbox);
+
+            long? userid = ClaimUtilities.GetUserId(User);
+            var cart = _cartService.GetMyCart(_cookieManager.GetBrowserId(HttpContext), userid.Value);
             if (verification.Status==100)
             {
-
+                _ordersFacad.AddPayedOrderService.Execute(new AddPayedOrderServiceDto()
+                {
+                    CartId=cart.Data.CartId,
+                    UserId=userid.Value,
+                    RequestPayId=requestpay.Data.Id
+                });
+                //redirect to orders
+                return RedirectToAction("Index", "Orders");
             }
             else
             {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Web_Store.Domain.Entites.Commons;
+using Web_Store.Domain.Entites.Orders;
 
 namespace Web_Store.Domain.Entites.Users
 {
@@ -19,5 +20,6 @@ namespace Web_Store.Domain.Entites.Users
         public bool IsActive { get; set; }
 
         public ICollection<UserInRole> UserInRoles { get; set; }
+        public ICollection<Order> orders { get; set; }
     }
 }

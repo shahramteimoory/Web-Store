@@ -15,6 +15,7 @@ using Web_Store.Application.Services.Carts;
 using Web_Store.Application.Services.Common.FacadPattern;
 using Web_Store.Application.Services.Finances.FacadPattern;
 using Web_Store.Application.Services.HomePage.FacadPattern;
+using Web_Store.Application.Services.Orders.FacadPattern;
 using Web_Store.Application.Services.Products.FacadPattern;
 using Web_Store.Application.Services.Users.Commands.EditUser;
 using Web_Store.Application.Services.Users.Commands.RegisterUser;
@@ -79,7 +80,7 @@ namespace EndPoint.site
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<CookiesManeger, CookiesManeger>();
             services.AddScoped<IFinancesFacad,FinancesFacad>();
-
+            services.AddScoped<IOrdersFacad, OrdersFacad>();
 
 
             string connectionString = "Data Source=DESKTOP-GSQBNGV ; Initial Catalog=Web-StoreDB;Integrated Security=true;";

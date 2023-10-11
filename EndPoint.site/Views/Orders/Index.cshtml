@@ -1,0 +1,49 @@
+﻿@using Web_Store.Application.Services.Orders.Queries.GetUserorders
+@model List<GetUserOrderDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>سفارشات شما</h3>
+<table class="table table-responsive table-active table-bordered">
+    <thead>
+        <tr>
+            <th>شماره سفارش</th>
+            <th>شماره فاکتور</th>
+            <th>وضعیت سفارش</th>
+            <th>آدرس</th>
+            <th>موبایل</th>
+            <th>کد ملی</th>
+            <th>محصولات در این سفارش</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderId</td>
+                <td>@item.RequestPayId</td>
+                <td>@item.OrderState</td>
+                <td>@item.Address?</td>
+                <td>@item.Mobile</td>
+                <td>@item.NationalCode</td>
+                <td>
+                    <table>
+                        @foreach (var detail in item.orderDetail)
+                        {
+                            <tr style="border:outset"></tr>
+                            <td>@detail.ProductName</td>
+                            <td>@detail.Price</td>
+                            <td>@detail.Count</td>
+                            <button class="btn btn-danger" onclick="DeleteProduct('@item.OrderId')">جزییات</button>
+                        }
+                    </table>
+                </td>
+            </tr>
+        }
+        
+    </tbody>
+
+</table>

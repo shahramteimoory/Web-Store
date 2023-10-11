@@ -29,6 +29,7 @@ namespace Web_Store.Application.Services.Finances.Queries.GetRequestPay
                     Data = new RequestPayDto()
                     {
                         Amount = requestpay.Amount,
+                        Id = requestpay.Id,
                     },
                     IsSuccess = true
                 };
@@ -50,5 +51,6 @@ namespace Web_Store.Application.Services.Finances.Queries.GetRequestPay
     public class RequestPayDto
     {
         public int Amount { get; set; }
+        public long Id { get; set; }
     }
 }

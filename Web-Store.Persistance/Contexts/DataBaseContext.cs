@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿    using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +8,7 @@ using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Domain.Entites.Carts;
 using Web_Store.Domain.Entites.Finances;
 using Web_Store.Domain.Entites.HomePage;
+using Web_Store.Domain.Entites.Orders;
 using Web_Store.Domain.Entites.Products;
 using Web_Store.Domain.Entites.Users;
 
@@ -34,9 +35,17 @@ namespace Web_Store.Persistance.Contexts
         public DbSet<Cart> carts {  get; set; }
         public DbSet<CartItems> cartItems {  get; set; }
         public DbSet<RequestPay> requestPays {get; set;}
-
+        public DbSet<Order> order { get; set; }
+        public DbSet<OrderDetail> orderDetails { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Order>().HasOne(o=>o.User)
+                .WithMany(o=>o.orders).OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<Order>().HasOne(o => o.RequestPay)
+     .WithMany(o => o.orders).OnDelete(DeleteBehavior.NoAction);
+
+
             //seed kardan etelat be data base
             SeedDatas.SeedData(modelBuilder);
             //نمیزاره ایمیل تکراری ثبت بشه
