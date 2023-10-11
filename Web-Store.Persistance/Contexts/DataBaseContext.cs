@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Domain.Entites.Carts;
+using Web_Store.Domain.Entites.Finances;
 using Web_Store.Domain.Entites.HomePage;
 using Web_Store.Domain.Entites.Products;
 using Web_Store.Domain.Entites.Users;
@@ -32,6 +33,7 @@ namespace Web_Store.Persistance.Contexts
         public DbSet<HomePageImages> HomePageImages { get; set; }
         public DbSet<Cart> carts {  get; set; }
         public DbSet<CartItems> cartItems {  get; set; }
+        public DbSet<RequestPay> requestPays {get; set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

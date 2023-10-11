@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common;
@@ -54,10 +55,10 @@ namespace Web_Store.Application.Services.Users.Commands.UserLogin
                     Message = "رمز عبور اشتباه وارد شده"
                 };
             }
-            var Role = "";
+            List<string> Role = new List<string>();
             foreach (var item in user.UserInRoles)
             {
-                Role += $"{item.Role.Name}";
+                Role.Add(item.Role.Name);
             }
 
             return new ResultDto<ResultUserloginDto>()

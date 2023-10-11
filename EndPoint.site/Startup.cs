@@ -13,6 +13,7 @@ using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Carts;
 using Web_Store.Application.Services.Common.FacadPattern;
+using Web_Store.Application.Services.Finances.FacadPattern;
 using Web_Store.Application.Services.HomePage.FacadPattern;
 using Web_Store.Application.Services.Products.FacadPattern;
 using Web_Store.Application.Services.Users.Commands.EditUser;
@@ -22,6 +23,7 @@ using Web_Store.Application.Services.Users.Commands.UserLogin;
 using Web_Store.Application.Services.Users.Commands.UserStatusChange;
 using Web_Store.Application.Services.Users.Queries.GetRoles;
 using Web_Store.Application.Services.Users.Queries.GetUsers;
+using Web_Store.Common.Roles;
 using Web_Store.Persistance.Contexts;
 
 namespace EndPoint.site
@@ -38,6 +40,15 @@ namespace EndPoint.site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddAuthorization(Options =>
+            {
+                Options.AddPolicy(UserRole.Admin,policy=> policy.RequireRole(UserRole.Admin));
+                Options.AddPolicy(UserRole.Operator, policy => policy.RequireRole(UserRole.Operator));
+                Options.AddPolicy(UserRole.Customer, policy => policy.RequireRole(UserRole.Customer));
+            });
+
+
             services.AddAuthentication(options =>
             {
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -45,7 +56,7 @@ namespace EndPoint.site
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options =>
             {
-                options.LoginPath = new PathString("/");
+                options.LoginPath = new PathString("/Authentication/Signin");
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5.0);
             });
 
@@ -67,7 +78,9 @@ namespace EndPoint.site
             services.AddScoped<IHomePageFacad, HomePageFacad>();
             services.AddScoped<ICartService, CartService>();
             services.AddScoped<CookiesManeger, CookiesManeger>();
-            
+            services.AddScoped<IFinancesFacad,FinancesFacad>();
+
+
 
             string connectionString = "Data Source=DESKTOP-GSQBNGV ; Initial Catalog=Web-StoreDB;Integrated Security=true;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(Options=>Options.UseSqlServer(connectionString));
@@ -90,8 +103,9 @@ namespace EndPoint.site
             app.UseRouting();
 
             app.UseAuthentication();
-
             app.UseAuthorization();
+
+          
 
             app.UseEndpoints(endpoints =>
             {

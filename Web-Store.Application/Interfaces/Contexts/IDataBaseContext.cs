@@ -9,6 +9,7 @@ using Web_Store.Domain.Entites.HomePage;
 using Web_Store.Domain.Entites.Products;
 using Web_Store.Domain.Entites.Users;
 using Web_Store.Domain.Entites.Carts;
+using Web_Store.Domain.Entites.Finances;
 
 namespace Web_Store.Application.Interfaces.Contexts
 {
@@ -28,6 +29,7 @@ namespace Web_Store.Application.Interfaces.Contexts
         DbSet<HomePageImages> HomePageImages { get; set; }
         DbSet<Cart> carts { get; set; }
         DbSet<CartItems> cartItems { get; set; }
+        DbSet<RequestPay> requestPays { get; set; }
 
         int SaveChanges(bool acceptAllChangesOnSuccess);
         int SaveChanges();

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Web_Store.Domain.Entites.Carts;
+using Web_Store.Domain.Entites.Finances;
 using Web_Store.Domain.Entites.HomePage;
 using Web_Store.Domain.Entites.Products;
 using Web_Store.Domain.Entites.Users;
@@ -20,6 +21,8 @@ namespace Web_Store.Persistance.Contexts
             modelBuilder.Entity<Slider>().HasQueryFilter(s => !s.IsRemoved);
             modelBuilder.Entity<Cart>().HasQueryFilter(c => !c.IsRemoved);
             modelBuilder.Entity<CartItems>().HasQueryFilter(c => !c.IsRemoved);
+            modelBuilder.Entity<RequestPay>().HasQueryFilter(rp=> !rp.IsRemoved);
+            modelBuilder.Entity<HomePageImages>().HasQueryFilter(rp => !rp.IsRemoved);
         }
     }
 }
