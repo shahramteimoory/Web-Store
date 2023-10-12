@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.HomePage.Commands.AddHomePageImages;
@@ -8,6 +9,7 @@ using Web_Store.Domain.Entites.HomePage;
 namespace EndPoint.site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize("Admin")]
     public class HomePageImagesController : Controller
     {
         private readonly IHomePageFacad _homePageFacad;

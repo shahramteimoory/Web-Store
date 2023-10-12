@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using Web_Store.Application.Services.Users.Commands.EditUser;
@@ -12,6 +13,7 @@ using Web_Store.Application.Services.Users.Queries.GetUsers;
 namespace EndPoint.site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     { 
         private readonly IGetUserService _getUserService;

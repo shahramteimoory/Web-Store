@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Products.Commands.EditCategory;
 
 namespace EndPoint.site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Operator")]
     public class CategoriesController : Controller
     {
         private readonly IProductFacad _ProductFacad;

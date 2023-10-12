@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 
 namespace EndPoint.site.Utilities
@@ -17,6 +19,18 @@ namespace EndPoint.site.Utilities
             return null;
         }
 
+        public static List<string> GetUserRoles(ClaimsPrincipal User)
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            List<string> GetUserRoles = new List<string>();
+            foreach (var claim in claimsIdentity.Claims.Where(p => p.Type.EndsWith("role")))
+            {
+                GetUserRoles.Add(claim.Value);
+            }
+            return GetUserRoles; 
+
+
+        }
     }
  }
 

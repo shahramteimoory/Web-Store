@@ -7,6 +7,7 @@ using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Finances.Commands.AddRequestPay;
 using Web_Store.Application.Services.Finances.Queries.GetRequestPay;
+using Web_Store.Application.Services.Finances.Queries.GetRequestPayForAdmin;
 
 namespace Web_Store.Application.Services.Finances.FacadPattern
 {
@@ -31,6 +32,14 @@ namespace Web_Store.Application.Services.Finances.FacadPattern
             get
             {
                 return _getRequestPayService = _getRequestPayService ?? new GetRequestPayService(_context);
+            }
+        }
+        private IGetRequestPayForAdminService _getRequestPayForAdminService;
+        public IGetRequestPayForAdminService getRequestPayForAdminService
+        {
+            get
+            {
+                return _getRequestPayForAdminService= _getRequestPayForAdminService ?? new GetRequestPayForAdminService(_context);
             }
         }
     }

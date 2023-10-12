@@ -59,6 +59,7 @@ namespace EndPoint.site
             {
                 options.LoginPath = new PathString("/Authentication/Signin");
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5.0);
+                options.AccessDeniedPath = new PathString("/");
             });
 
 

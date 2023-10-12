@@ -30,6 +30,8 @@ namespace Web_Store.Application.Services.Orders.Commands.AddPayedOrder
                 .Where(c=>c.Id==request.CartId).FirstOrDefault();
             requestpay.IsPay = true;
             requestpay.PayDate = DateTime.Now;
+            requestpay.RefId = request.RefId;
+            requestpay.Authority=request.Authority;
 
             cart.Finished = true;
             Order order = new Order()
@@ -68,5 +70,7 @@ namespace Web_Store.Application.Services.Orders.Commands.AddPayedOrder
         public long CartId { get; set; }
         public long RequestPayId { get; set; }
         public long UserId { get; set; }
+        public long RefId { get; set; }
+        public string Authority { get; set; }
     }
 }

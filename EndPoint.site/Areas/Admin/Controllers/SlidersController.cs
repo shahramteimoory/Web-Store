@@ -8,6 +8,7 @@ using Web_Store.Common.Dto;
 namespace EndPoint.site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class SlidersController : Controller
     {
         private readonly IHomePageFacad _homePageFacad;
