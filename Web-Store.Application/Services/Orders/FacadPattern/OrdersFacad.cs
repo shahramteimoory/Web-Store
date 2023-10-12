@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Orders.Commands.AddPayedOrder;
+using Web_Store.Application.Services.Orders.Queries.GetOrdersForAdmin;
 using Web_Store.Application.Services.Orders.Queries.GetUserorders;
 
 namespace Web_Store.Application.Services.Orders.FacadPattern
@@ -31,6 +32,14 @@ namespace Web_Store.Application.Services.Orders.FacadPattern
             get
             {
                 return _getUserordersService = _getUserordersService ?? new GetUserordersService(_context);
+            }
+        }
+        private IGetOrdersForAdminService _getOrdersForAdminService;
+        public IGetOrdersForAdminService getOrdersForAdminService
+        {
+            get
+            {
+                return _getOrdersForAdminService= _getOrdersForAdminService ?? new GetOrdersForAdminService(_context);
             }
         }
     }
