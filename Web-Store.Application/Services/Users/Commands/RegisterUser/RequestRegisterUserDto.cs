@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Web_Store.Application.Services.Users.Commands.RegisterUser
+﻿namespace Web_Store.Application.Services.Users.Commands.RegisterUser
 {
     public class RequestRegisterUserDto
     {

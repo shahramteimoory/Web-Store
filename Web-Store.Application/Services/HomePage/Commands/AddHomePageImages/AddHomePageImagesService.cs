@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.IO;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 using Web_Store.Common.Dto;
@@ -15,17 +13,17 @@ namespace Web_Store.Application.Services.HomePage.Commands.AddHomePageImages
         private readonly IHostingEnvironment _environment;
         public AddHomePageImagesService(IDataBaseContext context, IHostingEnvironment environment)
         {
-            _context=context;
+            _context = context;
             _environment = environment;
         }
         public ResultDto Execute(RequestAddHomePageImagesDto request)
         {
-            if (request==null)
+            if (request == null)
             {
                 return new ResultDto()
                 {
                     IsSuccess = false,
-                    Message="خطا عملیات مورد نظر انجام نشد"
+                    Message = "خطا عملیات مورد نظر انجام نشد"
                 };
             }
             var resultUpload = UploadFile(request.File);
@@ -34,14 +32,14 @@ namespace Web_Store.Application.Services.HomePage.Commands.AddHomePageImages
             {
                 Link = request.Link,
                 Src = resultUpload.FileNameAddress,
-                imageLocation=request.imageLocation
+                imageLocation = request.imageLocation
             };
             _context.HomePageImages.Add(homePageImages);
             _context.SaveChanges();
             return new ResultDto()
             {
                 IsSuccess = true,
-                Message="تصویر مورد نظر با موفقیت اضافه شد"
+                Message = "تصویر مورد نظر با موفقیت اضافه شد"
             };
         }
         private UploadDto UploadFile(IFormFile file)

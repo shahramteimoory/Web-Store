@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Common.Queries.GetCategory;
 using Web_Store.Application.Services.Common.Queries.GetHomePageImage;
@@ -17,7 +12,7 @@ namespace Web_Store.Application.Services.Common.FacadPattern
         private readonly IDataBaseContext _context;
         public CommonFacad(IDataBaseContext context)
         {
-            _context=context;
+            _context = context;
         }
         private IGetMenuService _getMenuService;
         public IGetMenuService getMenuService
@@ -32,7 +27,7 @@ namespace Web_Store.Application.Services.Common.FacadPattern
         {
             get
             {
-                return _getCategoryService= _getCategoryService??new GetCategoryService(_context);
+                return _getCategoryService = _getCategoryService ?? new GetCategoryService(_context);
             }
         }
         public IGetSliderService _getSliderService;
@@ -49,7 +44,7 @@ namespace Web_Store.Application.Services.Common.FacadPattern
         {
             get
             {
-                return _getHomePageImageService= _getHomePageImageService ?? new GetHomePageImageService(_context);
+                return _getHomePageImageService = _getHomePageImageService ?? new GetHomePageImageService(_context);
             }
         }
     }

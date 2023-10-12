@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
+﻿namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
 {
     public class ResultProductForSiteDto
     {

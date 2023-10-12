@@ -12,7 +12,7 @@ namespace EndPoint.site.Areas.Admin.Controllers
         private readonly IProductFacad _ProductFacad;
         public CategoriesController(IProductFacad ProductFacad)
         {
-            _ProductFacad=ProductFacad;
+            _ProductFacad = ProductFacad;
         }
         public IActionResult Index(long? parentId)
         {
@@ -27,18 +27,18 @@ namespace EndPoint.site.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddNewCategory(long? parentId,string Name)
+        public IActionResult AddNewCategory(long? parentId, string Name)
         {
-            var result=_ProductFacad.AddNewCategoryService.Execute(parentId, Name);
+            var result = _ProductFacad.AddNewCategoryService.Execute(parentId, Name);
             return Json(result);
         }
         [HttpPost]
-        public IActionResult EditCategory(long categoryId , string Name)
+        public IActionResult EditCategory(long categoryId, string Name)
         {
             return Json(_ProductFacad.editCategory.Execute(new RequestEditCategoryDto
             {
-                 CategoryId = categoryId,
-                 Name = Name
+                CategoryId = categoryId,
+                Name = Name
             }));
         }
         [HttpPost]

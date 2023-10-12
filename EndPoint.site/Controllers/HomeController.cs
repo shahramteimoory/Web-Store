@@ -1,15 +1,8 @@
 ﻿using EndPoint.site.Models;
 using EndPoint.site.Models.ViewModels.HomePage;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.FacadPatterns;
-using Web_Store.Application.Services.Products.FacadPattern;
 using Web_Store.Application.Services.Products.Queries.GetProductForSite;
 
 namespace EndPoint.site.Controllers
@@ -21,9 +14,9 @@ namespace EndPoint.site.Controllers
         private readonly IProductFacad _productFacad;
         private readonly IHomePageFacad _homePageFacad;
         public HomeController(
-            ILogger<HomeController> logger, 
-            ICommonFacad commonFacad, 
-            IProductFacad productFacad, 
+            ILogger<HomeController> logger,
+            ICommonFacad commonFacad,
+            IProductFacad productFacad,
             IHomePageFacad homePageFacad)
         {
             _logger = logger;
@@ -43,7 +36,7 @@ namespace EndPoint.site.Controllers
             };
             return View(homePage);
         }
-         
+
         public IActionResult Privacy()
         {
             return View();

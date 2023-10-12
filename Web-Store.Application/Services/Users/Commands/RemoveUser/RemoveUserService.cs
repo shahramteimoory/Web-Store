@@ -1,5 +1,4 @@
-﻿using System;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 
 namespace Web_Store.Application.Services.Users.Commands.RemoveUser

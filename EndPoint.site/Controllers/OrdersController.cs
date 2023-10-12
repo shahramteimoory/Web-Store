@@ -12,7 +12,7 @@ namespace EndPoint.site.Controllers
         private readonly IOrdersFacad _ordersFacad;
         public OrdersController(IOrdersFacad ordersFacad)
         {
-            _ordersFacad=ordersFacad;
+            _ordersFacad = ordersFacad;
         }
         public IActionResult Index()
         {

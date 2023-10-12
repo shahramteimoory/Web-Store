@@ -22,11 +22,11 @@ namespace Web_Store.Persistance.Contexts
             modelBuilder.Entity<Slider>().HasQueryFilter(s => !s.IsRemoved);
             modelBuilder.Entity<Cart>().HasQueryFilter(c => !c.IsRemoved);
             modelBuilder.Entity<CartItems>().HasQueryFilter(c => !c.IsRemoved);
-            modelBuilder.Entity<RequestPay>().HasQueryFilter(rp=> !rp.IsRemoved);
+            modelBuilder.Entity<RequestPay>().HasQueryFilter(rp => !rp.IsRemoved);
             modelBuilder.Entity<HomePageImages>().HasQueryFilter(rp => !rp.IsRemoved);
             modelBuilder.Entity<Order>().HasQueryFilter(rp => !rp.IsRemoved);
             modelBuilder.Entity<OrderDetail>().HasQueryFilter(rp => !rp.IsRemoved);
 
-    }
         }
+    }
 }

@@ -9,7 +9,7 @@ namespace Web_Store.Application.Services.Products.Commands.AddNewCategory
         private readonly IDataBaseContext _context;
         public AddNewCategoryService(IDataBaseContext context)
         {
-            _context=context;
+            _context = context;
         }
         public ResultDto Execute(long? ParentId, string Name)
         {
@@ -28,11 +28,11 @@ namespace Web_Store.Application.Services.Products.Commands.AddNewCategory
             };
             _context.categories.Add(category);
             _context.SaveChanges();
-            return new ResultDto 
+            return new ResultDto
             {
-                IsSuccess = true ,
-                Message="دسته بندی با موقیت اضافه شد"
-                
+                IsSuccess = true,
+                Message = "دسته بندی با موقیت اضافه شد"
+
             };
         }
 

@@ -1,5 +1,4 @@
-﻿using System;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 
 namespace Web_Store.Application.Services.Products.Commands.RemoveCategory
@@ -33,10 +32,10 @@ namespace Web_Store.Application.Services.Products.Commands.RemoveCategory
                     Message = "دسته بندی با موفقیت حذف شد"
                 };
             }
-            catch 
+            catch
             {
                 return new ResultDto() { IsSuccess = false, Message = "خطایی در حذف دسته بندی رخ داده" };
-                
+
             }
 
         }

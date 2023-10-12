@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Web_Store.Domain</RootNamespace>
+	  <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
 </Project>

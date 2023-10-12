@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using System;
-using System.IO;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 using Web_Store.Common.Dto;
@@ -13,16 +11,16 @@ namespace Web_Store.Application.Services.HomePage.Commands.AddNewSlider
     {
         private readonly IDataBaseContext _context;
         private readonly IHostingEnvironment _environment;
-        public AddNewSliderService(IDataBaseContext context , IHostingEnvironment environment)
+        public AddNewSliderService(IDataBaseContext context, IHostingEnvironment environment)
         {
-            _context=context;
-            _environment=environment;
+            _context = context;
+            _environment = environment;
         }
-        public ResultDto Execute(IFormFile file,string Link,string Name)
+        public ResultDto Execute(IFormFile file, string Link, string Name)
         {
             try
             {
-                if (file==null && Link==null)
+                if (file == null && Link == null)
                 {
                     return new ResultDto()
                     {
@@ -36,14 +34,14 @@ namespace Web_Store.Application.Services.HomePage.Commands.AddNewSlider
                     Link = Link,
                     Src = ResulyUpload.FileNameAddress,
                     Name = Name
-                    
+
                 };
                 _context.sliders.Add(slider);
                 _context.SaveChanges();
                 return new ResultDto
                 {
                     IsSuccess = true,
-                    Message="اسلایدر اضافه شد"
+                    Message = "اسلایدر اضافه شد"
                 };
 
             }
@@ -54,7 +52,7 @@ namespace Web_Store.Application.Services.HomePage.Commands.AddNewSlider
                 {
                     IsSuccess = false,
                     Message = "خطا . عملیات  انجام نشد"
-                    
+
                 };
             }
 
@@ -96,5 +94,5 @@ namespace Web_Store.Application.Services.HomePage.Commands.AddNewSlider
             return null;
         }
     }
-    
+
 }

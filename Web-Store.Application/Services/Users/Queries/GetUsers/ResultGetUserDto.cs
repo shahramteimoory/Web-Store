@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Web_Store.Application.Services.Users.Queries.GetUsers
+﻿namespace Web_Store.Application.Services.Users.Queries.GetUsers
 {
     public class ResultGetUserDto
     {

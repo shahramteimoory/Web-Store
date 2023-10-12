@@ -1,10 +1,7 @@
 ﻿using Dto.Payment;
 using EndPoint.site.Utilities;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Carts;
 using Web_Store.Application.Services.Orders.Commands.AddPayedOrder;
@@ -41,8 +38,8 @@ namespace EndPoint.site.Controllers
         {
             long? userId = ClaimUtilities.GetUserId(User);
             var cart = _cartService.GetMyCart(_cookieManager.GetBrowserId(HttpContext), userId);
-           
-            if (cart.Data.SumAmount >0)
+
+            if (cart.Data.SumAmount > 0)
             {
                 var requestpay = _finances.AddRequestPayService.Execute(cart.Data.SumAmount, userId.Value);
 
@@ -54,7 +51,7 @@ namespace EndPoint.site.Controllers
                 {
                     Mobile = "09121112222",
                     CallbackUrl = $"http://localhost:37278/Pay/Verify?guid={requestpay.Data.Guid}",
-                    Description = "پرداخت شماره فاکتور:"+requestpay.Data.RequestPayId,
+                    Description = "پرداخت شماره فاکتور:" + requestpay.Data.RequestPayId,
                     Email = requestpay.Data.Email,
                     Amount = requestpay.Data.Amount,
                     MerchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
@@ -84,31 +81,31 @@ namespace EndPoint.site.Controllers
             //IRestResponse response = client.Execute(request);
             //VerificationPayResultDto verification = JsonConvert.DeserializeObject<VerificationPayResultDto>(response.Content);
             var verification = await _payment.Verification(new DtoVerification
-                {
-                    Amount = requestpay.Data.Amount,
-                    MerchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-                    Authority = authority
-                }, Payment.Mode.sandbox);
+            {
+                Amount = requestpay.Data.Amount,
+                MerchantId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
+                Authority = authority
+            }, Payment.Mode.sandbox);
 
             long? userid = ClaimUtilities.GetUserId(User);
             var cart = _cartService.GetMyCart(_cookieManager.GetBrowserId(HttpContext), userid.Value);
-            if (verification.Status==100)
+            if (verification.Status == 100)
             {
                 _ordersFacad.AddPayedOrderService.Execute(new AddPayedOrderServiceDto()
                 {
-                    CartId=cart.Data.CartId,
-                    UserId=userid.Value,
-                    RequestPayId=requestpay.Data.Id
+                    CartId = cart.Data.CartId,
+                    UserId = userid.Value,
+                    RequestPayId = requestpay.Data.Id
                 });
                 //redirect to orders
                 return RedirectToAction("Index", "Orders");
             }
             else
             {
-                
+
             }
             return View();
-            
+
 
         }
     }

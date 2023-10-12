@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 
@@ -10,17 +9,17 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductDetailForSit
         private readonly IDataBaseContext _context;
         public GetProductDetailForSiteService(IDataBaseContext context)
         {
-            _context= context;
+            _context = context;
         }
         public ResultDto<ProductDetailForSiteDto> Execute(long Id)
         {
             var product = _context.products
-                .Include(p=>p.Category).ThenInclude(p=>p.ParentCategory)//vaghti include mizarim dige nemishe find gozasht bayad where bezarim
-                .Include(p=>p.ProductImages)
-                .Include(p=>p.ProductFeatures)
-                .Where(p=>p.Id==Id)
+                .Include(p => p.Category).ThenInclude(p => p.ParentCategory)//vaghti include mizarim dige nemishe find gozasht bayad where bezarim
+                .Include(p => p.ProductImages)
+                .Include(p => p.ProductFeatures)
+                .Where(p => p.Id == Id)
                 .FirstOrDefault();
-            if (product==null)
+            if (product == null)
             {
                 return new ResultDto<ProductDetailForSiteDto>()
                 {
@@ -39,21 +38,21 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductDetailForSit
                 Data = new ProductDetailForSiteDto
                 {
                     Brand = product.Brand,
-                    Category =$"{product.Category.ParentCategory.Name} - {product.Category.Name}",
+                    Category = $"{product.Category.ParentCategory.Name} - {product.Category.Name}",
                     Description = product.Description,
                     Id = Id,
                     price = product.Price,
-                    Title=product.Name,
-                    Images=product.ProductImages.Select(p=>p.Src).ToList(),
-                    Features=product.ProductFeatures.Select(p=> new ProductDetailForSite_FeaturesDto
+                    Title = product.Name,
+                    Images = product.ProductImages.Select(p => p.Src).ToList(),
+                    Features = product.ProductFeatures.Select(p => new ProductDetailForSite_FeaturesDto
                     {
-                        DisplayName=p.DisplayName,
-                        Value=p.Value,
+                        DisplayName = p.DisplayName,
+                        Value = p.Value,
                     }).ToList(),
                 },
-                IsSuccess= true
+                IsSuccess = true
             };
-            
+
         }
     }
 }

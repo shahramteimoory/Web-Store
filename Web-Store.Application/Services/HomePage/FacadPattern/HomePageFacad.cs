@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.HomePage.Commands.AddHomePageImages;
@@ -13,7 +8,6 @@ using Web_Store.Application.Services.HomePage.Commands.DeleteSlider;
 using Web_Store.Application.Services.HomePage.Queries.GetAllImageSite;
 using Web_Store.Application.Services.HomePage.Queries.GetAllSlider;
 using Web_Store.Application.Services.HomePage.Queries.ProductCategoryHomePage;
-using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 
 namespace Web_Store.Application.Services.HomePage.FacadPattern
 {
@@ -23,8 +17,8 @@ namespace Web_Store.Application.Services.HomePage.FacadPattern
         private readonly IDataBaseContext _context;
         public HomePageFacad(IDataBaseContext context, IHostingEnvironment environment)
         {
-            _context= context;
-            _environment= environment;
+            _context = context;
+            _environment = environment;
         }
         private IAddNewSliderService _AddNewSliderService;
         public IAddNewSliderService AddNewSliderService
@@ -63,7 +57,7 @@ namespace Web_Store.Application.Services.HomePage.FacadPattern
         {
             get
             {
-               return _igetImageSiteService = _igetImageSiteService ?? new getImageSiteService(_context);
+                return _igetImageSiteService = _igetImageSiteService ?? new getImageSiteService(_context);
             }
         }
         private IDeleteHomeImagesService _deleteHomeImages;
@@ -71,7 +65,7 @@ namespace Web_Store.Application.Services.HomePage.FacadPattern
         {
             get
             {
-                return _deleteHomeImages= _deleteHomeImages ?? new DeleteHomeImagesService(_context);
+                return _deleteHomeImages = _deleteHomeImages ?? new DeleteHomeImagesService(_context);
             }
         }
 

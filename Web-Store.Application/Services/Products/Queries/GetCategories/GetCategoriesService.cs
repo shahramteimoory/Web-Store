@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 
@@ -11,7 +9,7 @@ namespace Web_Store.Application.Services.Products.Queries.GetCategories
         private readonly IDataBaseContext _context;
         public GetCategoriesService(IDataBaseContext context)
         {
-            _context=context;
+            _context = context;
         }
         public ResultDto<List<CategoriesDto>> Execut(long? parentId)
         {

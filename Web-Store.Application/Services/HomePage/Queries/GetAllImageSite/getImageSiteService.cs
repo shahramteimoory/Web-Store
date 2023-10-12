@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 
 namespace Web_Store.Application.Services.HomePage.Queries.GetAllImageSite
@@ -10,7 +8,7 @@ namespace Web_Store.Application.Services.HomePage.Queries.GetAllImageSite
         private readonly IDataBaseContext _context;
         public getImageSiteService(IDataBaseContext context)
         {
-            _context=context;
+            _context = context;
         }
         public ResultDto<List<GetImageSiteDto>> Execute()
         {
@@ -19,7 +17,7 @@ namespace Web_Store.Application.Services.HomePage.Queries.GetAllImageSite
                 Id = I.Id,
                 Link = I.Link,
                 Src = I.Src,
-                imageLocation=I.imageLocation
+                imageLocation = I.imageLocation
             }).ToList();
             return new ResultDto<List<GetImageSiteDto>>()
             {

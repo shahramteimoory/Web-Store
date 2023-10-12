@@ -11,7 +11,7 @@ namespace EndPoint.site.Areas.Admin.Controllers
         private readonly IFinancesFacad _financesFacad;
         public RequestPayController(IFinancesFacad financesFacad)
         {
-            _financesFacad= financesFacad;
+            _financesFacad = financesFacad;
         }
         public IActionResult Index()
         {

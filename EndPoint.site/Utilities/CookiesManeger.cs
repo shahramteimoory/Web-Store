@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-
-namespace EndPoint.site.Utilities
+﻿namespace EndPoint.site.Utilities
 {
     public class CookiesManeger
     {
@@ -12,7 +9,7 @@ namespace EndPoint.site.Utilities
         public Guid GetBrowserId(HttpContext context)
         {
 
-           string browserId=GetValue(context, "BrowserId");
+            string browserId = GetValue(context, "BrowserId");
             if (browserId == null)
             {
                 string value = Guid.NewGuid().ToString();

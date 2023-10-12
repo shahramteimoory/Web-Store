@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common;
 using Web_Store.Common.Dto;
@@ -12,25 +10,25 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
         private readonly IDataBaseContext _context;
         public GetProductForSiteService(IDataBaseContext context)
         {
-            _context=context;
+            _context = context;
         }
-        public ResultDto<ResultProductForSiteDto> Execute(Ordering ordering, string SearchKey, int page,int PageSize, long? CatId)
+        public ResultDto<ResultProductForSiteDto> Execute(Ordering ordering, string SearchKey, int page, int PageSize, long? CatId)
         {
             int totalRow = 0;
             var productQuery = _context.products.Include(p => p.ProductImages)
                 .Where(p => p.Display == true).AsQueryable();
-            if (CatId!=null)
+            if (CatId != null)
             {
-                productQuery=productQuery.Where(p=>p.CategoryId == CatId || p.Category.ParentCategoryId==CatId).AsQueryable();
+                productQuery = productQuery.Where(p => p.CategoryId == CatId || p.Category.ParentCategoryId == CatId).AsQueryable();
             }
             if (!string.IsNullOrWhiteSpace(SearchKey))
             {
-                productQuery= productQuery.Where(c=>c.Name.Contains(SearchKey) || c.Brand.Contains(SearchKey)).AsQueryable();
+                productQuery = productQuery.Where(c => c.Name.Contains(SearchKey) || c.Brand.Contains(SearchKey)).AsQueryable();
             }
             switch (ordering)
             {
                 case Ordering.NotOrder:
-                    productQuery = productQuery.OrderByDescending(c=>c.Id).AsQueryable();
+                    productQuery = productQuery.OrderByDescending(c => c.Id).AsQueryable();
                     break;
                 case Ordering.MostVisited:
                     productQuery = productQuery.OrderByDescending(c => c.ViewCount).AsQueryable();
@@ -52,7 +50,7 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
                     break;
             }
 
-            var product= productQuery.ToPaged(page, PageSize, out totalRow);
+            var product = productQuery.ToPaged(page, PageSize, out totalRow);
 
             //felan ke system coment nadarim mizanim random star bede bebinim kar mikone ya na
             Random rd = new Random();
@@ -67,7 +65,7 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductForSite
                         Star = rd.Next(1, 5),
                         Title = p.Name,
                         ImageSrc = p.ProductImages.FirstOrDefault().Src,
-                        Price =p.Price,
+                        Price = p.Price,
 
                     }).ToList(),
                 },

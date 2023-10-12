@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 using Web_Store.Domain.Entites.Products;
@@ -11,13 +10,13 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductDetailForAdm
         private readonly IDataBaseContext _context;
         public GetProductDetailForAdminService(IDataBaseContext context)
         {
-            _context= context;
+            _context = context;
         }
         public ResultDto<ProductDetailForAdminDto> Execute(long id)
         {
-            var product=_context.products
-                .Include(p=>p.Category).ThenInclude(p=>p.ParentCategory)
-                .Include(p=>p.ProductFeatures).Include(p=>p.ProductImages).Where(p=>p.Id == id).FirstOrDefault();
+            var product = _context.products
+                .Include(p => p.Category).ThenInclude(p => p.ParentCategory)
+                .Include(p => p.ProductFeatures).Include(p => p.ProductImages).Where(p => p.Id == id).FirstOrDefault();
             return new ResultDto<ProductDetailForAdminDto>
             {
                 Data = new ProductDetailForAdminDto()
@@ -48,7 +47,7 @@ namespace Web_Store.Application.Services.Products.Queries.GetProductDetailForAdm
         }
         private string GetCategory(Category category)
         {
-            string result=category.ParentCategory !=null ? $"{category.ParentCategory.Name} -" :"";
+            string result = category.ParentCategory != null ? $"{category.ParentCategory.Name} -" : "";
             return result += category.Name;
         }
     }

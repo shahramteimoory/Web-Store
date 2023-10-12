@@ -1,9 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.HomePage.Commands.AddHomePageImages;
-using Web_Store.Application.Services.HomePage.FacadPattern;
 using Web_Store.Domain.Entites.HomePage;
 
 namespace EndPoint.site.Areas.Admin.Controllers
@@ -56,5 +54,5 @@ namespace EndPoint.site.Areas.Admin.Controllers
         {
             return Json(_homePageFacad.deleteHomeImages.Execute(imageId));
         }
-     }
+    }
 }

@@ -1,11 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
-using System.IO;
-using System;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 using Web_Store.Domain.Entites.Products;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Web_Store.Application.Services.Products.Commands.AddNewProduct
 {
@@ -35,18 +32,18 @@ namespace Web_Store.Application.Services.Products.Commands.AddNewProduct
                     Inventory = request.Inventory,
                     Description = request.Description,
                     Category = category,
-                    Display= request.Display,
+                    Display = request.Display,
                 };
                 _context.products.Add(product);
 
                 List<ProductImages> productImages = new List<ProductImages>();
                 foreach (var image in request.Images)
                 {
-                    var UploadedResult=UploadFile(image);
+                    var UploadedResult = UploadFile(image);
                     productImages.Add(new ProductImages
                     {
-                        Product=product,
-                        Src= UploadedResult.FileNameAddress
+                        Product = product,
+                        Src = UploadedResult.FileNameAddress
                     });
                 }
                 _context.productImages.AddRange(productImages);
@@ -69,12 +66,12 @@ namespace Web_Store.Application.Services.Products.Commands.AddNewProduct
                     Message = "محصول با موفقیت به لیست محصولات اضافه شد"
                 };
             }
-            catch 
+            catch
             {
                 return new ResultDto { IsSuccess = false, Message = "عملیات با خطا مواجه شد" };
-                
+
             }
-  
+
 
         }
 

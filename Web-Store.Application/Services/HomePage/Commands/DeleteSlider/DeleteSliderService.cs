@@ -1,5 +1,4 @@
-﻿using System;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 
 namespace Web_Store.Application.Services.HomePage.Commands.DeleteSlider
@@ -9,7 +8,7 @@ namespace Web_Store.Application.Services.HomePage.Commands.DeleteSlider
         private readonly IDataBaseContext _context;
         public DeleteSliderService(IDataBaseContext context)
         {
-            _context=context;
+            _context = context;
         }
         public ResultDto Execute(long SliderId)
         {
@@ -25,16 +24,16 @@ namespace Web_Store.Application.Services.HomePage.Commands.DeleteSlider
                     Message = "اسلایدر با موقیت حذف شد"
                 };
             }
-            catch 
+            catch
             {
                 return new ResultDto()
                 {
                     IsSuccess = false,
                     Message = "خطا مشکلی در حذف اسلایدر رخ داده"
                 };
-                
+
             }
- 
+
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
 using Web_Store.Application.Services.Users.Commands.EditUser;
 using Web_Store.Application.Services.Users.Commands.RegisterUser;
 using Web_Store.Application.Services.Users.Commands.RemoveUser;
@@ -15,7 +14,7 @@ namespace EndPoint.site.Areas.Admin.Controllers
     [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
-    { 
+    {
         private readonly IGetUserService _getUserService;
         private readonly IGetRolesService _getRolesService;
         private readonly IRegisterUserService _registerUserService;
@@ -26,19 +25,19 @@ namespace EndPoint.site.Areas.Admin.Controllers
             , IGetRolesService getRolesService
             , IRegisterUserService registerUserService
             , IRemoveUserService RemoveUserService
-            ,IUserStatusChangeService userStatusChangeService
+            , IUserStatusChangeService userStatusChangeService
             , IEditUserService editUserService)
         {
-                _getUserService = getUserService;
-                _getRolesService = getRolesService;
-                _registerUserService = registerUserService;
+            _getUserService = getUserService;
+            _getRolesService = getRolesService;
+            _registerUserService = registerUserService;
             _RemoveUserService = RemoveUserService;
-            _userStatusChangeService= userStatusChangeService;
+            _userStatusChangeService = userStatusChangeService;
             _editUserService = editUserService;
         }
 
-        
-        public IActionResult Index(string searchkey,int page=1)
+
+        public IActionResult Index(string searchkey, int page = 1)
         {
             return View(_getUserService.Execute(new RequestGetUserDto
             {
@@ -50,12 +49,12 @@ namespace EndPoint.site.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            ViewBag.Roles=new SelectList(_getRolesService.Execute().Data,"Id","Name");
+            ViewBag.Roles = new SelectList(_getRolesService.Execute().Data, "Id", "Name");
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(string Email,string FullName ,long RoleId , string Password , string RePassword)
+        public IActionResult Create(string Email, string FullName, long RoleId, string Password, string RePassword)
         {
             var result = _registerUserService.Execute(new RequestRegisterUserDto
             {
@@ -70,7 +69,7 @@ namespace EndPoint.site.Areas.Admin.Controllers
                 },
                 Password = Password,
                 RePasword = RePassword
-            }) ;
+            });
             return Json(result);
         }
         [HttpPost]
@@ -86,7 +85,7 @@ namespace EndPoint.site.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(long UserId, string FullName,string Email)
+        public IActionResult Edit(long UserId, string FullName, string Email)
         {
             return Json(_editUserService.Execute(new RequestEdituserDto
             {

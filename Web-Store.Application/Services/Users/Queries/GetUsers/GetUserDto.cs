@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using Web_Store.Application.Services.Users.Queries.GetRoles;
-using Web_Store.Domain.Entites.Users;
-
-namespace Web_Store.Application.Services.Users.Queries.GetUsers
+﻿namespace Web_Store.Application.Services.Users.Queries.GetUsers
 {
     public class GetUserDto
     {

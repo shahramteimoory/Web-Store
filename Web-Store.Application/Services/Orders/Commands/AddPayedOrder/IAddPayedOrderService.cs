@@ -1,9 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 using Web_Store.Domain.Entites.Orders;
@@ -19,19 +14,19 @@ namespace Web_Store.Application.Services.Orders.Commands.AddPayedOrder
         private readonly IDataBaseContext _context;
         public AddPayedOrderService(IDataBaseContext context)
         {
-            _context=context;
+            _context = context;
         }
         public ResultDto Execute(AddPayedOrderServiceDto request)
         {
-            var user=_context.users.Find(request.UserId);
-            var requestpay=_context.requestPays.Find(request.RequestPayId);
-            var cart=_context.carts.Include(c=>c.cartItems)
+            var user = _context.users.Find(request.UserId);
+            var requestpay = _context.requestPays.Find(request.RequestPayId);
+            var cart = _context.carts.Include(c => c.cartItems)
                 .ThenInclude(c => c.Product)
-                .Where(c=>c.Id==request.CartId).FirstOrDefault();
+                .Where(c => c.Id == request.CartId).FirstOrDefault();
             requestpay.IsPay = true;
             requestpay.PayDate = DateTime.Now;
             requestpay.RefId = request.RefId;
-            requestpay.Authority=request.Authority;
+            requestpay.Authority = request.Authority;
 
             cart.Finished = true;
             Order order = new Order()
@@ -42,7 +37,7 @@ namespace Web_Store.Application.Services.Orders.Commands.AddPayedOrder
             };
             _context.order.Add(order);
 
-            List<OrderDetail>orderDetails = new List<OrderDetail>();
+            List<OrderDetail> orderDetails = new List<OrderDetail>();
             foreach (var item in cart.cartItems)
             {
                 //این 100% غلطه چون بعد پرداحت داریم تازه قیمت رو دوباره میگیریم 

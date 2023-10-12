@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Web_Store.Application.Services.Products.Queries.GetProductDetailForAdmin
+﻿namespace Web_Store.Application.Services.Products.Queries.GetProductDetailForAdmin
 {
     public class ProductDetailForAdminDto
     {

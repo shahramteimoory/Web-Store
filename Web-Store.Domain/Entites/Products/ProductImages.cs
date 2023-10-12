@@ -2,7 +2,7 @@
 
 namespace Web_Store.Domain.Entites.Products
 {
-    public class ProductImages: BaseEntites
+    public class ProductImages : BaseEntites
     {
         public virtual Product Product { get; set; }
         public long ProductId { get; set; }

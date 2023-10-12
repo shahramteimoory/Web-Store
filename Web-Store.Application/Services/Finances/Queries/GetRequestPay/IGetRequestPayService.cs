@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 
 namespace Web_Store.Application.Services.Finances.Queries.GetRequestPay
@@ -17,12 +12,12 @@ namespace Web_Store.Application.Services.Finances.Queries.GetRequestPay
         private readonly IDataBaseContext _context;
         public GetRequestPayService(IDataBaseContext context)
         {
-            _context=context;
+            _context = context;
         }
         public ResultDto<RequestPayDto> Execute(Guid guid)
         {
-            var requestpay=_context.requestPays.Where(r=>r.Guid==guid).FirstOrDefault();
-            if (requestpay !=null)
+            var requestpay = _context.requestPays.Where(r => r.Guid == guid).FirstOrDefault();
+            if (requestpay != null)
             {
                 return new ResultDto<RequestPayDto>()
                 {

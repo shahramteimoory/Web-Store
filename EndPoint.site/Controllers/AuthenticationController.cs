@@ -1,10 +1,7 @@
 ﻿using EndPoint.site.Models.ViewModels.AuthenticationViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using Web_Store.Application.Services.Users.Commands.RegisterUser;
 using Web_Store.Application.Services.Users.Commands.UserLogin;
@@ -92,7 +89,7 @@ namespace EndPoint.site.Controllers
         public IActionResult Signin(string Email, string Password, string url = "/")
         {
             var signupResult = _userLoginService.Execute(Email, Password);
-            if (signupResult.IsSuccess==true)
+            if (signupResult.IsSuccess == true)
             {
                 var claims = new List<Claim>()
                 {
@@ -116,7 +113,7 @@ namespace EndPoint.site.Controllers
             }
             return Json(signupResult);
         }
-        
+
         public IActionResult SignOut()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

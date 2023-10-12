@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Web_Store.Domain.Entites.Orders;
+﻿using Web_Store.Domain.Entites.Orders;
 
 namespace Web_Store.Application.Services.Orders.Queries.GetUserorders
 {

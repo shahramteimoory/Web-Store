@@ -3,7 +3,7 @@ using Web_Store.Application.Interfaces.FacadPatterns;
 
 namespace EndPoint.site.ViewComponents
 {
-    public class GetMenuOnMobile:ViewComponent
+    public class GetMenuOnMobile : ViewComponent
     {
         private readonly ICommonFacad _commonFacad;
         public GetMenuOnMobile(ICommonFacad commonFacad)

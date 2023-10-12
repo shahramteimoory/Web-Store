@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Web_Store.Application.Services.Users.Commands.UserLogin
+﻿namespace Web_Store.Application.Services.Users.Commands.UserLogin
 {
     public class ResultUserloginDto
     {

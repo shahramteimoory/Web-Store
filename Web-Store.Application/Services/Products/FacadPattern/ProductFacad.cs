@@ -1,9 +1,4 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Products.Commands.AddNewCategory;
@@ -88,7 +83,7 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _Validation= _Validation ?? new Validation();
+                return _Validation = _Validation ?? new Validation();
             }
         }
         private IGetProductForAdminService _GetProductForAdminService;
@@ -96,7 +91,7 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _GetProductForAdminService= _GetProductForAdminService ?? new GetProductForAdminService(_context);
+                return _GetProductForAdminService = _GetProductForAdminService ?? new GetProductForAdminService(_context);
             }
         }
 
@@ -105,7 +100,7 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _getProductDetailForAdmin= _getProductDetailForAdmin ?? new GetProductDetailForAdminService(_context);
+                return _getProductDetailForAdmin = _getProductDetailForAdmin ?? new GetProductDetailForAdminService(_context);
             }
         }
         private IRemoveProductService _RemoveProductService;
@@ -113,7 +108,7 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _RemoveProductService= _RemoveProductService ?? new RemoveProductService(_context);
+                return _RemoveProductService = _RemoveProductService ?? new RemoveProductService(_context);
             }
         }
         private IGetProductForSiteService _getProductForSiteService;
@@ -121,7 +116,7 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _getProductForSiteService= _getProductForSiteService ?? new GetProductForSiteService(_context);
+                return _getProductForSiteService = _getProductForSiteService ?? new GetProductForSiteService(_context);
             }
         }
         private IGetProductDetailForSiteService _getProductDetailForSiteService;
@@ -129,7 +124,7 @@ namespace Web_Store.Application.Services.Products.FacadPattern
         {
             get
             {
-                return _getProductDetailForSiteService= _getProductDetailForSiteService?? new GetProductDetailForSiteService(_context);
+                return _getProductDetailForSiteService = _getProductDetailForSiteService ?? new GetProductDetailForSiteService(_context);
             }
         }
     }

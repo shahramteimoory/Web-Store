@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
-using System.Linq;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Products.Commands.AddNewProduct;
 using Web_Store.Application.Services.Products.FluentValidation;
@@ -21,7 +18,7 @@ namespace EndPoint.site.Areas.Admin.Controllers
         {
             _ProductFacad = ProductFacad;
         }
-        public IActionResult Index(int Page=1,int PageSize=20)
+        public IActionResult Index(int Page = 1, int PageSize = 20)
         {
             return View(_ProductFacad.getProductForAdminService.Execute(Page, PageSize).Data);
         }

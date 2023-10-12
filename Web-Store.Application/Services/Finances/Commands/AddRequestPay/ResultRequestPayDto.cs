@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Web_Store.Application.Services.Finances.Commands.AddRequestPay
+﻿namespace Web_Store.Application.Services.Finances.Commands.AddRequestPay
 {
     public class ResultRequestPayDto
     {

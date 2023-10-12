@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
 namespace EndPoint.site.Utilities
 {
@@ -27,10 +24,10 @@ namespace EndPoint.site.Utilities
             {
                 GetUserRoles.Add(claim.Value);
             }
-            return GetUserRoles; 
+            return GetUserRoles;
 
 
         }
     }
- }
+}
 

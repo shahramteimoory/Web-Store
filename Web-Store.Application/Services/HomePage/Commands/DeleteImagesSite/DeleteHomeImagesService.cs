@@ -1,5 +1,4 @@
-﻿using System;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 
 namespace Web_Store.Application.Services.HomePage.Commands.DeleteImagesSite
@@ -9,7 +8,7 @@ namespace Web_Store.Application.Services.HomePage.Commands.DeleteImagesSite
         private readonly IDataBaseContext _context;
         public DeleteHomeImagesService(IDataBaseContext context)
         {
-            _context=context;
+            _context = context;
         }
         public ResultDto Execute(long imageId)
         {
@@ -21,7 +20,7 @@ namespace Web_Store.Application.Services.HomePage.Commands.DeleteImagesSite
                     return new ResultDto()
                     {
                         IsSuccess = false,
-                        Message="تصویر مورد نظر پیدا نشد"
+                        Message = "تصویر مورد نظر پیدا نشد"
                     };
                 }
                 image.IsRemoved = true;
@@ -33,14 +32,14 @@ namespace Web_Store.Application.Services.HomePage.Commands.DeleteImagesSite
                     Message = "تصویر با موفقیت حذف شد"
                 };
             }
-            catch 
+            catch
             {
                 return new ResultDto()
                 {
                     IsSuccess = false,
                     Message = "خطا عملیات انجام نشد"
                 };
-                
+
             }
 
         }

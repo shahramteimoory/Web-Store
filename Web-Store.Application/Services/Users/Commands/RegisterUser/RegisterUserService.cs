@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common;
 using Web_Store.Common.Dto;

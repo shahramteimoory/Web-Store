@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Interfaces.FacadPatterns;
 using Web_Store.Application.Services.Orders.Commands.AddPayedOrder;
 using Web_Store.Application.Services.Orders.Queries.GetOrdersForAdmin;
@@ -39,7 +34,7 @@ namespace Web_Store.Application.Services.Orders.FacadPattern
         {
             get
             {
-                return _getOrdersForAdminService= _getOrdersForAdminService ?? new GetOrdersForAdminService(_context);
+                return _getOrdersForAdminService = _getOrdersForAdminService ?? new GetOrdersForAdminService(_context);
             }
         }
     }

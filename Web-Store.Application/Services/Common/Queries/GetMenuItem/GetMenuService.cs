@@ -1,6 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
 using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
 

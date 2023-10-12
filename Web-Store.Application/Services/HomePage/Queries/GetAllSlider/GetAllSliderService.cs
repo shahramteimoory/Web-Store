@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Application.Services.Common.Queries.GetSlider;
 using Web_Store.Common.Dto;
 
@@ -24,7 +22,7 @@ namespace Web_Store.Application.Services.HomePage.Queries.GetAllSlider
             }).ToList();
             return new ResultDto<List<SliderDto>>
             {
-                Data =slider,
+                Data = slider,
                 IsSuccess = true
             };
         }

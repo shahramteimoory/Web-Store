@@ -4,7 +4,7 @@ namespace EndPoint.site.Models.ViewModels.AuthenticationViewModel
 {
     public class SignupViewModel
     {
-    
+
         [Required(ErrorMessage = "نام و نام خانوادگی را وارد نمایید")]
         public string FullName { get; set; }
 

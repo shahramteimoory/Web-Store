@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Web_Store.Application.Interfaces.Contexts;
+﻿using Web_Store.Application.Interfaces.Contexts;
 using Web_Store.Common.Dto;
-using Web_Store.Domain.Entites.Orders;
-using Web_Store.Domain.Entites.Users;
 
 namespace Web_Store.Application.Services.Finances.Queries.GetRequestPayForAdmin
 {
@@ -19,7 +12,7 @@ namespace Web_Store.Application.Services.Finances.Queries.GetRequestPayForAdmin
         private readonly IDataBaseContext _Context;
         public GetRequestPayForAdminService(IDataBaseContext context)
         {
-            _Context=context;
+            _Context = context;
         }
         public ResultDto<List<RequestPayDto>> Execute()
         {
@@ -28,15 +21,15 @@ namespace Web_Store.Application.Services.Finances.Queries.GetRequestPayForAdmin
                 Address = r.Address,
                 UserId = r.UserId,
                 Amount = r.Amount,
-                User_Name=r.User.FullName,
-                IsPay=r.IsPay,
+                User_Name = r.User.FullName,
+                IsPay = r.IsPay,
                 PayDate = r.PayDate,
-                Authority=r.Authority,
-                RefId=r.RefId,
-                NationalCode=r.NationalCode,
-                Guid=r.Guid,
-                Mobile=r.Mobile,
-                Id=r.Id,
+                Authority = r.Authority,
+                RefId = r.RefId,
+                NationalCode = r.NationalCode,
+                Guid = r.Guid,
+                Mobile = r.Mobile,
+                Id = r.Id,
             }).ToList();
             return new ResultDto<List<RequestPayDto>>()
             {

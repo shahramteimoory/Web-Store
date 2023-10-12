@@ -9,11 +9,11 @@ namespace EndPoint.site.Controllers
         private readonly IProductFacad _ProductFacad;
         public ProductController(IProductFacad ProductFacad)
         {
-            _ProductFacad=ProductFacad;
+            _ProductFacad = ProductFacad;
         }
-        public IActionResult Index(Ordering ordering, string SearchKey, int page = 1,int PageSize=20 , long? CatId = null)
+        public IActionResult Index(Ordering ordering, string SearchKey, int page = 1, int PageSize = 20, long? CatId = null)
         {
-            return View(_ProductFacad.getProductForSiteService.Execute(ordering, SearchKey,page, PageSize, CatId).Data);
+            return View(_ProductFacad.getProductForSiteService.Execute(ordering, SearchKey, page, PageSize, CatId).Data);
         }
         public IActionResult Details(long Id)
         {

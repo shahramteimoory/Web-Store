@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System.Collections.Generic;
 
 namespace Web_Store.Application.Services.Products.Commands.AddNewProduct
 {
@@ -11,7 +10,7 @@ namespace Web_Store.Application.Services.Products.Commands.AddNewProduct
         public int Price { get; set; }
         public int Inventory { get; set; }
         public long CategoryId { get; set; }
-        public bool Display {  get; set; }
+        public bool Display { get; set; }
         public List<IFormFile> Images { get; set; }
         public List<AddNewProduct_Features> Features { get; set; }
     }
